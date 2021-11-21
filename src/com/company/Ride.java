@@ -2,11 +2,11 @@ package com.company;
 
 public class Ride implements IRide {
     private IArea source;
-    private IArea dest ;
+    private IArea Destenation ;
 
-    public Ride(IArea source, IArea dest) {
+    public Ride(IArea source, IArea Destenation) {
         this.source = source;
-        this.dest = dest;
+        this.Destenation = Destenation;
     }
 
     public IArea getSource() {
@@ -21,22 +21,27 @@ public class Ride implements IRide {
     }
 
 
-    public IArea getDest() {
-        return dest;
+    public IArea getDestenation() {
+        return Destenation;
     }
 
 
-    public void setDest(IArea dest) {
-        this.dest = dest;
+    public void setDestenation(IArea Destenation) {
+        this.Destenation = Destenation;
     }
 
-
-    public  Offer checkSourceArea (IArea area){
+// may we put this fun in the constractor of the ride
+    public  void checkSourceArea (IArea area){
         if(area instanceof Area){
-            area.notifyDriver()
+            area.notifyDriver();
         }
       
 
+    }
+
+    @Override
+    public String toString() {
+        return "Ride [Destenation=" + Destenation + ", source=" + source + "]";
     }
 
     

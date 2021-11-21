@@ -1,8 +1,11 @@
 package com.company;
+
+import java.util.Scanner;
+
 public class User {
     private String phoneNum;
     private String email;
-
+    private Offer offer;
 
     public String getPhoneNum() {
         return phoneNum;
@@ -20,19 +23,37 @@ public class User {
         this.email = email;
     }
 
-    public Offer requestRide(IArea source, IArea dest){
-        source=new Area();
-        dest=new Area();
-        Ride ride=new Ride(source, dest);
-        
+    public Offer getOffer() {
+        return offer;
+    }
 
+    public void setOffer(Offer offer) {
+        this.offer = offer;
+    }
 
-
+    public Offer requestRide(IArea source, IArea dest) {
+        source = new Area();
+        dest = new Area();
+        Ride ride = new Ride(source, dest);
 
     }
 
-    public void chooseOffer (ArrayList<Offer> offers){
-        
+    public void chooseOffer(ArrayList<Offer> offers) {
+        System.out.println("Choose one of these offers");
+        int i;
+        for (i = 0; i < offers.length; i++) {
+            System.out.println(i + 1 + ":" + offers.indexOf(i));
+        }
+        Scanner cs = new Scanner(System.in);
+        int choise = cs.nextInt();
+        this.setOffer(offers.git(i - 1));
+
     }
 
+    @Override
+    public String toString() {
+        return "User [email=" + email + ", offer=" + offer + ", phoneNum=" + phoneNum + "]";
+    }
+
+    
 }
