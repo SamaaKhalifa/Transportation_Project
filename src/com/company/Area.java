@@ -11,7 +11,7 @@ public class Area implements IArea {
 
 public Offer notifyDriver (Ride ride){
     for(int i=0;i<drivers.length() ;i++){
-        drivers.indexOf(i).update()
+        drivers.indexOf(i).update();
 
     }
 }
