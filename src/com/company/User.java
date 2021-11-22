@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class User {
@@ -32,21 +33,23 @@ public class User {
     }
 
     public Offer requestRide(IArea source, IArea dest) {
+        Offer offer=new Offer();
         source = new Area();
         dest = new Area();
         Ride ride = new Ride(source, dest);
-
+         return offer;
     }
+
 
     public void chooseOffer(ArrayList<Offer> offers) {
         System.out.println("Choose one of these offers");
         int i;
-        for (i = 0; i < offers.length; i++) {
+        for (i = 0; i < offers.toArray().length; i++) {
             System.out.println(i + 1 + ":" + offers.indexOf(i));
         }
         Scanner cs = new Scanner(System.in);
         int choise = cs.nextInt();
-        this.setOffer(offers.git(i - 1));
+        this.setOffer(offers.get(i - 1));
 
     }
 
