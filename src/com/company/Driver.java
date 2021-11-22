@@ -10,7 +10,7 @@ public class Driver extends IUser implements IDriver {
     private double AvgRate ;
     private  String phoneNum ;
     private  String email ;
-    private  boolean verified ;
+
     public void setDrivingLicense(String drivingLicense) {
         this.drivingLicense = drivingLicense;
     }
@@ -23,9 +23,6 @@ public class Driver extends IUser implements IDriver {
     public void setEmail(String email) {
         this.email = email;
     };
-    public void setVerified(boolean verified) {
-        this.verified = verified;
-    }
     public String getDrivingLicense() {
         return drivingLicense;
     }
@@ -41,9 +38,7 @@ public class Driver extends IUser implements IDriver {
     public String getEmail() {
         return email;
     }
-    public boolean isVerified() {
-        return verified;
-    }
+
 
     @Override
     public double getAvgRating() {

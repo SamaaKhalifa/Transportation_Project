@@ -7,6 +7,8 @@ public class IUser {
 
     public boolean verified;
 
+
+
     public String getUserName(){
         return userName;
     }
@@ -20,4 +22,12 @@ public class IUser {
     public void setPassword(String password){
         this.password = password;
     }
+    public void setVerified(boolean verified) {
+        this.verified = verified;
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
+
 }
