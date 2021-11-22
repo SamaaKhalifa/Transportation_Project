@@ -23,7 +23,7 @@ public class UserRegister extends Registration{
             if (result == null) {
                 System.out.println("Either userName or Password is incorrect!");
             } else {
-                System.out.println("You logged in successfully");
+                System.out.println("You logged in successfully.");
             }
         }
         else{
