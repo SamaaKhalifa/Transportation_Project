@@ -6,9 +6,9 @@ public class UserRegister extends Registration{
         IUser result;
         result = obj.searchIUser(iuser.getUserName(), iuser.getPassword());
         if (result != null) {
-            System.out.println("This data is not valid");
+            System.out.println("This account already exist , Try to login!");
         } else {
-            obj.save(iuser);
+            obj.saveUser(iuser);
             iuser.verified = true;
         }
     }
@@ -21,9 +21,9 @@ public class UserRegister extends Registration{
 
         if(iuser.verified == true) {
             if (result == null) {
-                System.out.println("This data is not valid");
+                System.out.println("Either userName or Password is incorrect!");
             } else {
-                System.out.println("You logged in the System successfully");
+                System.out.println("You logged in successfully");
             }
         }
         else{
