@@ -1,9 +1,7 @@
 package com.company;
 
-import java.sql.Driver;
-
 interface IArea {
-public void notifyDriver ();
-public void addDriver ();
-public void removeDriver ();
+public void notifyDriver (Ride ride);
+public void addDriver (Driver driver);
+public void removeDriver (Driver driver);
 }
