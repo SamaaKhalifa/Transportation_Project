@@ -3,8 +3,8 @@ package com.company;
 import java.util.ArrayList;
 
 public interface ISaving {
-    void save(IUser user) ;
-    void save(IUser pended) ;
+    void saveUser(IUser user) ;
+    void savePended(IUser pended);
     void save(Area area);
     void save(Ride ride);
     ArrayList<IUser> retrieveUsers();
