@@ -1,7 +1,49 @@
 package com.company;
 import java.util.ArrayList;
 import java.util.Scanner;
-public class Driver extends AbstractDriver implements IDriver {
+public class Driver extends IUser implements IDriver {
+    private String drivingLicense ;
+    private String  nationalId ;
+    private ArrayList<Area> favoriteAreas =new ArrayList<>();
+    private ArrayList<Ride> rides =new ArrayList<>();
+    private  Rate rate;
+    private double AvgRate ;
+    private  String phoneNum ;
+    private  String email ;
+    private  boolean verified ;
+    public void setDrivingLicense(String drivingLicense) {
+        this.drivingLicense = drivingLicense;
+    }
+    public void setNationalId(String nationalId) {
+        this.nationalId = nationalId;
+    }
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    };
+    public void setVerified(boolean verified) {
+        this.verified = verified;
+    }
+    public String getDrivingLicense() {
+        return drivingLicense;
+    }
+    public String getNationalId() {
+        return nationalId;
+    }
+    public double getAvgRate() {
+        return AvgRate;
+    }
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public boolean isVerified() {
+        return verified;
+    }
 
     @Override
     public double getAvgRating() {
@@ -50,6 +92,5 @@ public class Driver extends AbstractDriver implements IDriver {
     public String toString(){
        return "Driving License"+getDrivingLicense()+"\n"+"National ID"+getNationalId();
     }
-
 
 }
