@@ -14,8 +14,6 @@ public class Ride implements IRide {
     }
 
 
-
-
     public void setSource(IArea source) {
         this.source = source;
     }

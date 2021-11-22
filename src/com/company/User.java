@@ -24,9 +24,6 @@ public class User {
         source=new Area();
         dest=new Area();
         Ride ride=new Ride(source, dest);
-        
-
-
 
 
     }
