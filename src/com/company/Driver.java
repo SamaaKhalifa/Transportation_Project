@@ -83,21 +83,20 @@ public class Driver extends IUser implements IDriver {
         double price = input.nextDouble();
         newOffer.setPrice(price);
         ride.addOffer(newOffer);
-
-
-
     }
 
     @Override
     public void AddNewFavArea(Area area) {
-        area.addDriver(this);
-        favoriteAreas.add(area);
+        if(!favoriteAreas.contains(area)){
+            area.addDriver(this);
+            favoriteAreas.add(area);
+        }
     }
 
     @Override
     public void getFavAreas() {
         for (int i = 0; i < favoriteAreas.size(); i++) {
-            System.out.println("Area " + i + 1 + ": " + favoriteAreas.get(i));
+            System.out.println("Area " + (i + 1) + ": " + favoriteAreas.get(i));
         }
 
     }

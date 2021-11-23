@@ -113,34 +113,54 @@ public class Main {
                     Scanner sc = new Scanner(System.in);
                     ch = sc.nextInt();
                     if (ch == 1) { //req ride
-                        String Source, destination;
+                        String source, destination;
                         Scanner charSc = new Scanner(System.in);
                         System.out.println("Enter the source area name:");
-                        Source = charSc.nextLine();
+                        source = charSc.nextLine();
                         System.out.println("Enter the destination area name:");
                         destination = charSc.nextLine();
-                        Ride ride = ((User) iuser).requestRide(Source, destination);
-                        if (saving.retrieveRide().isEmpty()) {
-                            saving.save(ride);
+                        IArea Source=saving.searchArea(source);
+                        IArea Destination=saving.searchArea(destination);
+                        if(Source==null) {
+                            IArea Sour=new Area();
+                            Sour.setName(source);
+                            Source=Sour;
+                            saving.save((Area) Sour);
+                        }
+                        if(Destination==null) {
+                            IArea Dest=new Area();
+                            Dest.setName(destination);
+                            Destination=Dest;
+                            saving.save((Area) Dest);
+                        }
+                        Ride ride = ((User) iuser).requestRide(Source, Destination);
+                        saving.save(ride);
+                        if (saving.retrieveRide().isEmpty()) { 
                             System.out.println("there is no offer for this ride, please try again later!");
+                            System.out.println( "2bl continue "+saving.retrieveRide());
                             continue;
                         }
+                      
                         for (Ride r : saving.retrieveRide()) {
                             System.out.println("ForLOOP");
-                            if (ride.equals(r)) {
+                            if (ride.equals(r)) { //la2etha
                                 System.out.println("Found ride");
-                                if (r.listOffers() != null) {
+                                System.out.println(r.toString());
+                                if (r.listOffers() != null) { // feh offer
                                     System.out.println("Offer");
                                     r.listOffers();
 
-                                } else {
+                                    
+                                }else{ //mfesh offer
                                     System.out.println("there is no offer for this ride, please try again later!");
                                 }
-                            } else {
-                                saving.save(ride);
-                            }
+                             break;
+                                
+                            } 
+                            
                         }
 
+                       
                     } else if (ch == 2) { //exit
                         continue;
                     }
@@ -148,8 +168,34 @@ public class Main {
                 }
                 // Driver login.
                 else if (loginChoice == 2) {
+
+
                     Registration driverRegister = new DriverRegister();
                     if (driverRegister.login(iuser)==false)continue;
+                    System.out.println("1:Add Area\n2:List all rides\n3: list user rating");
+                    Scanner sc = new Scanner(System.in);
+                    int driverCh=sc.nextInt();
+                    if(driverCh==1){// add area
+                        System.out.println("Enter the name of the area you want to add:");
+                        Scanner scar = new Scanner(System.in);
+                        String area=scar.nextLine();
+                        IArea ar=saving.searchArea(area);
+                        if(ar==null){
+                            IArea area1=new Area();
+                            area1.setName(area);
+                            saving.save((Area) area1);
+                            ar=area1;
+                        }
+                        ((Driver)iuser).AddNewFavArea((Area) ar);
+                        ((Driver)iuser).getFavAreas();
+
+                    }else if ( driverCh==2){// list all rides
+                        ((Driver)iuser).listRides();
+
+                    }else if( driverCh==3){// list rating
+
+                    }
+
                 } else {
                     System.out.println("invalid input!");
                 }
