@@ -66,7 +66,15 @@ public class arraySaving implements ISaving {
         }
         return null;
     }
-
+    public IArea searchArea(String name) {
+        for(IArea area:this.retrieveArea()){
+            if(((Area)area).getName().equals(name)){
+                return area;
+            }
+        }
+        //this.save(area);
+        return null;
+    }
     public IUser searchAdmin(String userName, String Password) {
         for (IUser user : admins) {
             if (userName.equals(user.getUserName()) && Password.equals(user.getPassword())) {
