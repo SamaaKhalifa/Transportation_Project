@@ -11,7 +11,7 @@ public class AdminRegesteration extends  Registration {
             System.out.println("You are not an admin!");
         } else {
             iuser.verified = true;
-            System.out.println("You logged in successfully");
+            System.out.println("You logged in successfully.");
         }
     }
 }

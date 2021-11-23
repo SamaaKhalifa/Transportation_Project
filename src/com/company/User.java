@@ -1,7 +1,4 @@
 package com.company;
-
-import java.util.ArrayList;
-
 public class User {
     private String phoneNum;
     private String email;
