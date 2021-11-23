@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class User extends IUser {
+
     private String phoneNum;
     private String email;
     private Offer offer;
