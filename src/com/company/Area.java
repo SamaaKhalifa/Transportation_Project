@@ -21,12 +21,12 @@ public class Area implements IArea {
     }
 
     @Override
-    public void addDriver(Driver driver) {
+    public void addDriver(com.company.Driver driver) {
         drivers.add(driver);
 
     }
     @Override
-    public void removeDriver(Driver driver) {
+    public void removeDriver(com.company.Driver driver) {
         drivers.remove(driver);
         //drivers.remove(new Driver (driver));
 
