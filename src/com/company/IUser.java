@@ -1,13 +1,11 @@
 package com.company;
 
-public class IUser {
+public abstract class IUser {
     protected String userName ;
     
     protected String password ;
 
     public boolean verified;
-
-
 
     public String getUserName(){
         return userName;
