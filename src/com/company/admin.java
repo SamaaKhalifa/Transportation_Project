@@ -16,17 +16,50 @@ public class admin extends IUser {
         }
     }
 
-    public void verify(Driver Driv) {
-        for (IUser driver : saving.retrievePended()) {
-            if (driver.equals(Driv) && driver instanceof Driver) {
+    @Override
+    public String getPassword() {
+        // TODO Auto-generated method stub
+        return super.getPassword();
+    }
+
+    @Override
+    public String getUserName() {
+        // TODO Auto-generated method stub
+        return super.getUserName();
+    }
+
+    @Override
+    public void setPassword(String password) {
+        // TODO Auto-generated method stub
+        super.setPassword(password);
+    }
+
+    @Override
+    public void setUserName(String userName) {
+        // TODO Auto-generated method stub
+        super.setUserName(userName);
+    }
+
+    @Override
+    public String toString() {
+        return "admin [name=" + this.userName + "pass"+ this.password+"]";
+    }
+
+    public void verify(IUser driver) {
+        for (IUser itdriver : saving.retrievePended()) {
+            System.out.println( "in loop"+itdriver.toString());
+            if (driver.equals(itdriver) && itdriver instanceof Driver) {
                 ((Driver) driver).setVerified(true);
+                System.out.println( "in if");
                 saving.retrievePended().remove(driver);
-                saving.retrieveUsers().add(driver);
+                saving.saveUser(driver);
+                break;
             }
+            
         }
     }
 
-    ;
+    
 
     public ArrayList<IUser> listPendingRegistration() {
         return saving.retrievePended();

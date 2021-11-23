@@ -8,6 +8,8 @@ public class arraySaving implements ISaving {
     static ArrayList<Ride> rides=new ArrayList<>();
     static ArrayList<IUser> pending=new ArrayList<>();
     static ArrayList<IUser> admins=new ArrayList<>();
+
+    
     public void saveUser(IUser user) {
         iusers.add(user);
         System.out.println(iusers);
