@@ -14,27 +14,35 @@ public class Driver extends IUser implements IDriver {
     public void setDrivingLicense(String drivingLicense) {
         this.drivingLicense = drivingLicense;
     }
+
     public void setNationalId(String nationalId) {
         this.nationalId = nationalId;
     }
+
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }
+
     public void setEmail(String email) {
         this.email = email;
-    };
+    }
+
     public String getDrivingLicense() {
         return drivingLicense;
     }
+
     public String getNationalId() {
         return nationalId;
     }
+
     public double getAvgRate() {
         return AvgRate;
     }
+
     public String getPhoneNum() {
         return phoneNum;
     }
+
     public String getEmail() {
         return email;
     }
@@ -60,7 +68,6 @@ public class Driver extends IUser implements IDriver {
         double price=input.nextDouble();
          newOffer.setPrice(price);
          return newOffer;
-
     }
 
     @Override
