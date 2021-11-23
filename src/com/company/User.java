@@ -8,21 +8,24 @@ public class User extends IUser {
     private String phoneNum;
     private String email;
     private Offer offer;
-
     public String getPhoneNum() {
         return phoneNum;
     }
-
+    private boolean verified;
+    public void setVerified(boolean verified) {
+        this.verified = verified;
+    }
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }
-
-    public String getEmail() {
-        return email;
-    }
-
     public void setEmail(String email) {
         this.email = email;
+    }
+    public boolean getVerified(){
+        return verified;
+    }
+    public String getEmail() {
+        return email;
     }
 
 
@@ -35,11 +38,14 @@ public class User extends IUser {
     }
 
 
-    public ArrayList<Offer> requestRide(IArea source, IArea dest) {
-        source = new Area();
-        dest = new Area();
+    public Ride requestRide(String s, String d) {
+        IArea source = new Area();
+        IArea dest = new Area();
+        source.setName(s);
+        dest.setName(d);
         Ride ride = new Ride(source, dest);
-        return  ride.checkSourceArea(source);
+        ride.checkSourceArea(source);
+        return ride;
 
     }
 

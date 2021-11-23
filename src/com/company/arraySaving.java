@@ -3,14 +3,14 @@ package com.company;
 import java.util.ArrayList;
 
 public class arraySaving implements ISaving {
-    ArrayList<IUser> iusers;
-    ArrayList<Area> areas;
-    ArrayList<Ride> rides;
-    ArrayList<IUser> pending;
-    ArrayList<IUser> admins;
-
+    static ArrayList<IUser> iusers=new ArrayList<>();
+    static ArrayList<Area> areas=new ArrayList<>();
+    static ArrayList<Ride> rides=new ArrayList<>();
+    static ArrayList<IUser> pending=new ArrayList<>();
+    static ArrayList<IUser> admins=new ArrayList<>();
     public void saveUser(IUser user) {
         iusers.add(user);
+        System.out.println(iusers);
     }
 
     ;

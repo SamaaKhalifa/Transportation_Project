@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Ride implements IRide {
     private IArea source;
     private IArea Destenation ;
-
+    private ArrayList<Offer> offers;
     public Ride(IArea source, IArea Destenation) {
         this.source = source;
         this.Destenation = Destenation;
@@ -31,11 +31,20 @@ public class Ride implements IRide {
     }
 
 // may we put this fun in the constractor of the ride
-    public ArrayList<Offer> checkSourceArea (IArea area){
+    public void checkSourceArea (IArea area){
         if(area instanceof Area){
-            return area.notifyDriver(this);
+             area.notifyDriver(this);
         }
-        return null;
+    }
+
+    @Override
+    public void addOffer(Offer newOffer) {
+        offers.add(newOffer);
+    }
+
+    @Override
+    public ArrayList<Offer> listOffers() {
+        return offers;
     }
 
     @Override

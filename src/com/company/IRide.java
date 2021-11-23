@@ -3,5 +3,7 @@ package com.company;
 import java.util.ArrayList;
 
 public interface IRide{
-    public   ArrayList<Offer> checkSourceArea (IArea area);
+   void checkSourceArea (IArea area);
+   void addOffer(Offer newOffer);
+   ArrayList<Offer> listOffers();
 }
