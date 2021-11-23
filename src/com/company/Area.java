@@ -8,13 +8,31 @@ public class Area implements IArea {
     private ArrayList<IDriver> drivers = new ArrayList<>();
     private String name;
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public void addDriver(Driver driver) {
-        drivers.add(driver);
+    /*public String getName() {
+        return name;
+    }*/
+
+    @Override
+    public void notifyDriver(Ride ride) {
+        ArrayList<Offer>offers =new ArrayList<>();
+        for (int i = 0; i < drivers.size(); i++) {
+           drivers.get(i).addRide(ride);
+        }
+
 
     }
 
-    public void removeDriver(Driver driver) {
+    @Override
+    public void addDriver(com.company.Driver driver) {
+        drivers.add(driver);
+
+    }
+    @Override
+    public void removeDriver(com.company.Driver driver) {
         drivers.remove(driver);
         //drivers.remove(new Driver (driver));
 
@@ -26,22 +44,9 @@ public class Area implements IArea {
     }
 
 
-    @Override
-    public void notifyDriver(Ride ride) {
-        for (int i = 0; i < drivers.size(); i++) {
-            drivers.get(i).makeOffer(ride);
+   
 
-        }
-    }
+    
 
-    @Override
-    public void addDriver(com.company.Driver driver) {
-            drivers.add(driver);
-    }
-
-    @Override
-    public void removeDriver(com.company.Driver driver) {
-
-
-    }
+   
 }

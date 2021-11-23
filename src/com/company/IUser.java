@@ -5,7 +5,7 @@ public abstract class IUser {
     
     protected String password ;
 
-    public boolean verified;
+
 
     public String getUserName(){
         return userName;
@@ -13,7 +13,6 @@ public abstract class IUser {
     public String getPassword(){
         return password;
     }
-
     public void setUserName(String userName){
         this.userName = userName;
     }

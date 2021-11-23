@@ -1,7 +1,13 @@
 package com.company;
 
+import java.sql.Driver;
+import java.util.ArrayList;
+
 interface IArea {
-public void notifyDriver (Ride ride);
-public void addDriver (Driver driver);
-public void removeDriver (Driver driver);
+    void notifyDriver(Ride ride);
+
+    void addDriver(com.company.Driver driver);
+
+    void removeDriver(com.company.Driver driver);
+    void setName(String name);
 }
