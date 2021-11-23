@@ -1,5 +1,6 @@
 package com.company;
 
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -82,6 +83,8 @@ public class Driver extends IUser implements IDriver {
         double price = input.nextDouble();
         newOffer.setPrice(price);
         ride.addOffer(newOffer);
+
+
 
     }
 
