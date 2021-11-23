@@ -5,16 +5,13 @@ public abstract class IUser {
     
     protected String password ;
 
-    public boolean verified;
+
 
     public String getUserName(){
         return userName;
     }
     public String getPassword(){
         return password;
-    }
-    public void setVerified(boolean verified) {
-        this.verified = verified;
     }
     public void setUserName(String userName){
         this.userName = userName;
