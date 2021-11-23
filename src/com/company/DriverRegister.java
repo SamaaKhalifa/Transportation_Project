@@ -6,27 +6,27 @@ public class DriverRegister extends Registration{
         IUser result;
         result = obj.searchIUser(iuser.getUserName(), iuser.getPassword());
         if (result != null) {
-            System.out.println("This data is not valid");
+            System.out.println("This account already exist , Try to login!");
         } else {
-            obj.save(iuser);
+            obj.savePended(iuser);
         }
     }
 
     @Override
     public void login(IUser iuser) {
+
         IUser result;
-
         result = obj.searchIUser(iuser.getUserName(), iuser.getPassword());
-
-        if(iuser.verified == true) {
+        if (iuser instanceof Driver) {
             if (result == null) {
-                System.out.println("This data is not valid.");
+                System.out.println("You should register before log in.");
             } else {
-                System.out.println("You logged in the System successfully.");
+                if (((Driver) iuser).getVerified() == true) {
+                    System.out.println("You logged in successfully.");
+                } else {
+                    System.out.println("You are not verified yet!");
+                }
             }
-        }
-        else{
-            System.out.println("You are in the waiting list.");
         }
     }
 }

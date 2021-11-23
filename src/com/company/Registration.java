@@ -1,7 +1,9 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public abstract class Registration {
-    public Saving obj  = new Savingarray();
+    public ISaving obj  = new arraySaving();
 
     public void Register(IUser iuser){
     }
