@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class Ride implements IRide {
     private IArea source;
     private IArea Destenation ;
@@ -31,12 +33,11 @@ public class Ride implements IRide {
     }
 
 // may we put this fun in the constractor of the ride
-    public  void checkSourceArea (IArea area){
+    public ArrayList<Offer> checkSourceArea (IArea area){
         if(area instanceof Area){
-            area.notifyDriver();
+            return area.notifyDriver(this);
         }
-      
-
+        return null;
     }
 
     @Override
