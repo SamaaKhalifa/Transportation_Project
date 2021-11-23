@@ -1,5 +1,7 @@
 package com.company;
 
-interface IRide{
-    public  void checkSourceArea (IArea area);
+import java.util.ArrayList;
+
+public interface IRide{
+    public   ArrayList<Offer> checkSourceArea (IArea area);
 }
