@@ -23,9 +23,9 @@ public class Driver extends IUser implements IDriver {
     public void setEmail(String email) {
         this.email = email;
     };
-    public void setVerified(boolean verified) {
+   /* public void setVerified(boolean verified) {
         this.verified = verified;
-    }
+    }*/
     public String getDrivingLicense() {
         return drivingLicense;
     }
