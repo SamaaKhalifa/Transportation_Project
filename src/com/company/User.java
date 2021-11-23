@@ -24,6 +24,7 @@ public class User extends IUser {
         this.email = email;
     }
 
+
     public Offer getOffer() {
         return offer;
     }
@@ -31,6 +32,7 @@ public class User extends IUser {
     public void setOffer(Offer offer) {
         this.offer = offer;
     }
+
 
     public ArrayList<Offer> requestRide(IArea source, IArea dest) {
         source = new Area();

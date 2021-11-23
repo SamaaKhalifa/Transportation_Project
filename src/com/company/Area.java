@@ -8,6 +8,7 @@ public class Area implements IArea {
     private ArrayList<IDriver> drivers = new ArrayList<>();
     private String name;
 
+    @Override
     public ArrayList<Offer> notifyDriver(Ride ride) {
         ArrayList<Offer>offers =new ArrayList<>();
         for (int i = 0; i < drivers.size(); i++) {
@@ -19,11 +20,12 @@ public class Area implements IArea {
 
     }
 
+    @Override
     public void addDriver(Driver driver) {
         drivers.add(driver);
 
     }
-
+    @Override
     public void removeDriver(Driver driver) {
         drivers.remove(driver);
         //drivers.remove(new Driver (driver));
@@ -34,6 +36,11 @@ public class Area implements IArea {
     public String toString() {
         return "Area [drivers=" + drivers + ", name=" + name + "]";
     }
+
+
+   
+
     
 
+   
 }

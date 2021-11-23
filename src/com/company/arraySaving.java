@@ -3,16 +3,16 @@ package com.company;
 import java.util.ArrayList;
 
 public class arraySaving implements ISaving{
-    ArrayList<IUser> iusers;
+     ArrayList<IUser> iusers;
      ArrayList <Area> areas;
      ArrayList <Ride> rides;
      ArrayList<IUser> pending;
      ArrayList <IUser> admins;
 
-     public void save(IUser user){
+     public void saveUser(IUser user){
             iusers.add(user);
     } ;
-    public void save(IUser pended) {
+    public void savePended(IUser pended) {
             pending.add(pended);
     };
     public void save(Area area){
