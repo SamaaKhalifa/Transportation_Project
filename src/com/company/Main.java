@@ -113,27 +113,33 @@ public class Main {
                         System.out.println("Enter the destination area name:");
                         destination = charSc.nextLine();
                         Ride ride = ((User) iuser).requestRide(Source, destination);
-                        if (saving.retrieveRide().isEmpty()) {
-                            saving.save(ride);
+                        saving.save(ride);
+                        if (saving.retrieveRide().isEmpty()) { 
                             System.out.println("there is no offer for this ride, please try again later!");
+                            System.out.println( "2bl continue "+saving.retrieveRide());
                             continue;
                         }
+                      
                         for (Ride r : saving.retrieveRide()) {
                             System.out.println("ForLOOP");
-                            if (ride.equals(r)) {
+                            if (ride.equals(r)) { //la2etha
                                 System.out.println("Found ride");
-                                if (r.listOffers() != null) {
+                           
+                                if (r.listOffers() != null) { // feh offer
                                     System.out.println("Offer");
                                     r.listOffers();
 
-                                } else {
+                                    
+                                }else{ //mfesh offer
                                     System.out.println("there is no offer for this ride, please try again later!");
                                 }
-                            } else {
-                                saving.save(ride);
-                            }
+                             break;
+                                
+                            } 
+                            
                         }
 
+                       
                     } else if (ch == 2) { //exit
                         continue;
                     }
@@ -143,6 +149,7 @@ public class Main {
                 else if (loginChoice == 2) {
                     Registration userRegister = new DriverRegister();
                     userRegister.login(iuser);
+                    
                 } else {
                     System.out.println("invalid input!");
                 }
