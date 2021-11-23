@@ -13,7 +13,12 @@ public class Driver extends IUser implements IDriver {
     private String phoneNum;
     private String email;
     private boolean verified;
-
+    public void setVerified(boolean verified) {
+        this.verified = verified;
+    }
+    public boolean getVerified(){
+        return verified;
+    }
     public void setDrivingLicense(String drivingLicense) {
         this.drivingLicense = drivingLicense;
     }
@@ -64,20 +69,20 @@ public class Driver extends IUser implements IDriver {
     }
 
     @Override
-    public Offer makeOffer(Ride ride) {
+    public void makeOffer(Ride ride) {
         Offer newOffer = new Offer();
         newOffer.setDriver(this);
-        newOffer.setRide(ride);
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the Price you want in this offer");
         double price = input.nextDouble();
         newOffer.setPrice(price);
-        return newOffer;
+        ride.addOffer(newOffer);
 
     }
 
     @Override
     public void AddNewFavArea(Area area) {
+        area.addDriver(this);
         favoriteAreas.add(area);
     }
 
@@ -99,6 +104,10 @@ public class Driver extends IUser implements IDriver {
 
     public String toString() {
         return "Driving License" + getDrivingLicense() + "\n" + "National ID" + getNationalId();
+    }
+    @Override
+    public void addRide(Ride ride){
+        rides.add(ride);
     }
 
 }

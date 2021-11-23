@@ -8,15 +8,21 @@ public class Area implements IArea {
     private ArrayList<IDriver> drivers = new ArrayList<>();
     private String name;
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /*public String getName() {
+        return name;
+    }*/
+
     @Override
-    public ArrayList<Offer> notifyDriver(Ride ride) {
+    public void notifyDriver(Ride ride) {
         ArrayList<Offer>offers =new ArrayList<>();
         for (int i = 0; i < drivers.size(); i++) {
-           Offer offer= drivers.get(i).makeOffer(ride);//update
-           offers.add(offer);
-
+           drivers.get(i).addRide(ride);
         }
-         return offers;
+
 
     }
 

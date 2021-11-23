@@ -18,7 +18,7 @@ public class DriverRegister extends Registration{
 
         result = obj.searchIUser(iuser.getUserName(), iuser.getPassword());
 
-        if(iuser.verified == true) {
+        if(((Driver)iuser).getVerified() == true) {
             if (result == null) {
                 System.out.println("Either userName or Password is incorrect!");
             } else {
