@@ -1,6 +1,6 @@
 package com.company;
 
-public class AdminRegesteration extends  Registration {
+public class AdminRegister extends  Registration {
      @Override
     public void login(IUser iuser) {
         IUser result;

@@ -1,9 +1,8 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Driver extends IUser implements IDriver {
+
     private String drivingLicense;
     private String nationalId;
     private ArrayList<Area> favoriteAreas = new ArrayList<>();
@@ -74,6 +73,9 @@ public class Driver extends IUser implements IDriver {
         newOffer.setPrice(price);
         return newOffer;
 
+        double price=input.nextDouble();
+         newOffer.setPrice(price);
+         return newOffer;
     }
 
     @Override

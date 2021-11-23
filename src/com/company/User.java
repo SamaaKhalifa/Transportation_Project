@@ -1,4 +1,7 @@
 package com.company;
+
+import java.util.ArrayList;
+
 public class User {
     private String phoneNum;
     private String email;
@@ -24,9 +27,6 @@ public class User {
         source=new Area();
         dest=new Area();
         Ride ride=new Ride(source, dest);
-        
-
-
 
 
     }
