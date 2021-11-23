@@ -16,20 +16,30 @@ public class UserRegister extends Registration {
     }
 
     @Override
-    public void login(IUser iuser) {
+    public boolean login(IUser iuser) {
 
         IUser result;
+        boolean ans=false;
+        System.out.println("in login");
         result = obj.searchIUser(iuser.getUserName(), iuser.getPassword());
+
         if (iuser instanceof User) {
-            if (result == null) {
-                System.out.println("You should register before log in.");
-            } else {
+
                 if (((User) iuser).getVerified() == true) {
                     System.out.println("You logged in successfully.");
+                    ans=true;
                 } else {
                     System.out.println("You are not verified yet!");
+                    ans=false;
+
                 }
             }
+
+
+        else{
+            System.out.println("you are not user");
+            ans=false;
         }
+        return ans;
     }
 }

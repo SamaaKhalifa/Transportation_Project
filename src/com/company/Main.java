@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.sound.sampled.SourceDataLine;
+
 
 public class Main {
 
@@ -14,8 +14,6 @@ public class Main {
         admin1.setUserName("Admin1");
         admin1.setPassword("12345");
         saving.addAdmin(admin1);
-        admin1.toString();
-        System.out.println(admin1);
         while (true) {
             int choice;
             Scanner in = new Scanner(System.in);
@@ -25,6 +23,7 @@ public class Main {
             choice = in.nextInt();
             // registration.
             if (choice == 1) {
+
                 System.out.println("1:Register as a user!");
                 System.out.println("2:Register as a Driver!");
                 int registerChoice;
@@ -49,6 +48,7 @@ public class Main {
                     user.setPassword(info);
                     Registration registerUser = new UserRegister();
                     registerUser.Register(user);// done the registration.
+                    System.out.println("User info");
                     System.out.println(user.toString());
                 }
                 // Driver register.
@@ -76,7 +76,7 @@ public class Main {
                     driver.setPassword(info);
                     Registration registerDriver = new DriverRegister();
                     registerDriver.Register(driver);// done the registration.
-                    System.out.println( "pended"+saving.retrievePended());
+
                     ((admin)admin1).verify(driver);
 
                 } else {
@@ -97,10 +97,17 @@ public class Main {
                 int loginChoice;
                 Scanner reqSc = new Scanner(System.in);
                 loginChoice = reqSc.nextInt();
+                if (iuser==null)
+                {
+                    System.out.println("You should register before log in.");
+                    continue;
+                }
+                iuser=saving.searchIUser(userName, Password);
                 // User login.
                 if (loginChoice == 1) {
+
                     Registration userRegister = new UserRegister();
-                    userRegister.login(iuser);
+                    if (userRegister.login(iuser)==false)continue;
                     System.out.println("1:would like to Request a ride?\n" + "2:Exit");
                     int ch;
                     Scanner sc = new Scanner(System.in);
@@ -141,13 +148,15 @@ public class Main {
                 }
                 // Driver login.
                 else if (loginChoice == 2) {
-                    Registration userRegister = new DriverRegister();
-                    userRegister.login(iuser);
+                    Registration driverRegister = new DriverRegister();
+                    if (driverRegister.login(iuser)==false)continue;
                 } else {
                     System.out.println("invalid input!");
                 }
 
             } else {
+                System.out.println("thank you for using our amazing app!!!");
+                System.exit(0);
 
             }
 

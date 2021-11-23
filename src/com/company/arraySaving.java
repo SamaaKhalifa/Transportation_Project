@@ -62,8 +62,11 @@ public class arraySaving implements ISaving {
 
     public IUser searchIUser(String userName, String Password) {
         for (IUser user : iusers) {
+
             if (userName.equals(user.getUserName()) && Password.equals(user.getPassword())) {
+
                 return user;
+
             }
         }
         return null;

@@ -1,6 +1,9 @@
 package com.company;
 
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Driver extends IUser implements IDriver {
 
     private String drivingLicense;
@@ -77,9 +80,8 @@ public class Driver extends IUser implements IDriver {
         newOffer.setPrice(price);
         ride.addOffer(newOffer);
 
-        double price=input.nextDouble();
-         newOffer.setPrice(price);
-         return newOffer;
+
+
     }
 
     @Override

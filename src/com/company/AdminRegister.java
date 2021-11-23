@@ -2,16 +2,18 @@ package com.company;
 
 public class AdminRegister extends  Registration {
      @Override
-    public void login(IUser iuser) {
+    public boolean login(IUser iuser) {
         IUser result;
-
+         boolean ans=false;
         result = obj.searchAdmin(iuser.getUserName(), iuser.getPassword());
 
         if (result == null) {
             System.out.println("You are not an admin!");
+            ans=false;
         } else {
-            iuser.verified = true;
+             ans=true;
             System.out.println("You logged in successfully.");
         }
+        return ans;
     }
 }

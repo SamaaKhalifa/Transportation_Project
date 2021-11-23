@@ -6,5 +6,5 @@ public abstract class Registration {
     public void Register(IUser iuser){
     }
 
-    public abstract void login(IUser iuser);
+    public abstract boolean login(IUser iuser);
 }
