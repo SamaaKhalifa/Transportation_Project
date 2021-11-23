@@ -19,4 +19,7 @@ public abstract class IUser {
     public void setPassword(String password){
         this.password = password;
     }
+
+
+
 }

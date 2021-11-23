@@ -1,5 +1,6 @@
 package com.company;
 
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -38,6 +39,7 @@ public class User extends IUser {
     }
 
 
+
     public Ride requestRide(String s, String d) {
         IArea source = new Area();
         IArea dest = new Area();
@@ -46,7 +48,6 @@ public class User extends IUser {
         Ride ride = new Ride(source, dest);
         ride.checkSourceArea(source);
         return ride;
-
     }
 
     public void chooseOffer(ArrayList<Offer> offers) {
