@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Driver extends IUser implements IDriver {
+
     private String drivingLicense;
     private String nationalId;
     private ArrayList<Area> favoriteAreas = new ArrayList<>();
@@ -33,6 +34,7 @@ public class Driver extends IUser implements IDriver {
 
     public void setEmail(String email) {
         this.email = email;
+
     };
     public String getDrivingLicense() {
         return drivingLicense;
@@ -54,9 +56,11 @@ public class Driver extends IUser implements IDriver {
         return email;
     }
 
+
     public boolean isVerified() {
         return verified;
     }
+
 
     @Override
     public double getAvgRating() {
@@ -74,6 +78,7 @@ public class Driver extends IUser implements IDriver {
         newOffer.setDriver(this);
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the Price you want in this offer");
+
         double price = input.nextDouble();
         newOffer.setPrice(price);
         ride.addOffer(newOffer);

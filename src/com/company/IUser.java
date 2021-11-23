@@ -19,4 +19,12 @@ public abstract class IUser {
     public void setPassword(String password){
         this.password = password;
     }
+    public void setVerified(boolean verified) {
+        this.verified = verified;
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
+
 }
