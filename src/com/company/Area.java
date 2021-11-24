@@ -28,7 +28,7 @@ public class Area implements IArea {
 
     @Override
     public void addDriver(com.company.Driver driver) {
-        drivers.add(driver);
+        if(!drivers.contains(driver)) drivers.add(driver);
 
     }
     @Override
