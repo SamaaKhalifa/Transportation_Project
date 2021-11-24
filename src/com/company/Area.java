@@ -12,9 +12,9 @@ public class Area implements IArea {
         this.name = name;
     }
 
-    /*public String getName() {
+    public String getName() {
         return name;
-    }*/
+    }
 
     @Override
     public void notifyDriver(Ride ride) {
@@ -40,7 +40,7 @@ public class Area implements IArea {
 
     @Override
     public String toString() {
-        return "Area [drivers=" + drivers + ", name=" + name + "]";
+        return "Area [drivers=\n" + drivers + "\nArea name=" + name + "]";
     }
 
 

@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Ride implements IRide {
     private IArea source;
     private IArea Destenation ;
-    private ArrayList<Offer> offers;
 
-    
+    private ArrayList<Offer> offers=new ArrayList<>();
+
     public Ride(IArea source, IArea Destenation) {
         this.source = source;
         this.Destenation = Destenation;
@@ -44,14 +44,13 @@ public class Ride implements IRide {
         offers.add(newOffer);
     }
 
-    @Override
-    public ArrayList<Offer> listOffers() {
+
+    public ArrayList<Offer> getOffers() {
         return offers;
     }
-
     @Override
     public String toString() {
-        return "Ride [Destenation=" + Destenation + ", source=" + source + "]";
+        return "Ride [source=\n" + source + "\nDestenation=\n" + Destenation +"]";
     }
 
     
