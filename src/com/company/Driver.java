@@ -87,7 +87,6 @@ public class Driver extends IUser implements IDriver {
         newOffer.setDriver(this);
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the Price you want in this offer");
-
         double price = input.nextDouble();
         newOffer.setPrice(price);
         ride.addOffer(newOffer);
@@ -98,7 +97,6 @@ public class Driver extends IUser implements IDriver {
         area.addDriver(this);
         favoriteAreas.add(area);
     }
-
     @Override
     public ArrayList<Area> getFavAreas() {
        /* for (int i = 0; i < favoriteAreas.size(); i++) {
@@ -111,7 +109,7 @@ public class Driver extends IUser implements IDriver {
     @Override
     public void listRides() {
         for (int i = 0; i < rides.size(); i++) {
-            System.out.println("ride " + i + 1 + ": " + rides.get(i));
+            System.out.println("ride " + (int)(i + 1) + ": " + rides.get(i));
         }
 
     }
