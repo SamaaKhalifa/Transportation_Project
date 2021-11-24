@@ -58,7 +58,7 @@ public class User extends IUser {
         return ride;
     }
 
-    public void chooseOffer(ArrayList<Offer> offers) {
+    public Offer chooseOffer(ArrayList<Offer> offers) {
         System.out.println("Choose one of these offers");
         
         for (int i = 0; i < offers.size(); i++) {
@@ -66,7 +66,8 @@ public class User extends IUser {
         }
         Scanner cs = new Scanner(System.in);
         int choise = cs.nextInt();
-        this.setOffer(offers.get(choise - 1));
+        return offers.get(choise-1);
+        //this.setOffer(offers.get(choise - 1));
 
     }
 

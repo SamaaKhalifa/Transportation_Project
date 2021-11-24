@@ -130,7 +130,7 @@ public class Main {
 
                     Registration userRegister = new UserRegister();
                     if (userRegister.login(iuser) == false) continue;
-                    while (true){
+                   // while (true){
                     System.out.println("1:would like to Request a ride?\n" + "2:Exit");
                     int ch;
                     Scanner sc = new Scanner(System.in);
@@ -189,7 +189,7 @@ public class Main {
                         break;
                     }
 
-                }}
+                }//}
                 // Driver login.
                 else if (loginChoice == 2) {
                     Registration driverRegister = new DriverRegister();

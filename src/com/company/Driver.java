@@ -129,9 +129,11 @@ public class Driver extends IUser implements IDriver {
         rides.add(ride);
     }
 
-    @Override
-    public void listRates() {
-        rate.getRates();
+    public ArrayList<Ride> getRides() {
+        return rides;
     }
 
+    public Rate getRate() {
+        return rate;
+    }
 }

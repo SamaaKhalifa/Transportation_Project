@@ -7,9 +7,7 @@ public interface IDriver {
     void rateMe(int rate);
     void makeOffer(Ride ride);
     void AddNewFavArea(Area area);
-
     ArrayList<Ride> listRides();
     void addRide(Ride ride);
-    void listRates();
     ArrayList<Area> getFavAreas();
 }

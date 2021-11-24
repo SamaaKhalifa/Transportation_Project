@@ -51,5 +51,5 @@ public class Ride implements IRide {
         return "Ride [source=\n" + source + "\nDestenation=\n" + Destenation +"]";
     }
 
-    
+
 }
