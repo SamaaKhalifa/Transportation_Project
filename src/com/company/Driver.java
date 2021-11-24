@@ -73,6 +73,18 @@ public class Driver extends IUser implements IDriver {
         this.rate.addRate(rate);
     }
 
+    public Driver() {
+        super();
+    }
+
+    public Driver(String userName, String password, String drivingLicense, String nationalId, String phoneNum, String email) {
+        super(userName, password);
+        this.drivingLicense = drivingLicense;
+        this.nationalId = nationalId;
+        this.phoneNum = phoneNum;
+        this.email = email;
+    }
+
     @Override
     public void makeOffer(Ride ride) {
         Offer newOffer = new Offer();
@@ -87,34 +99,39 @@ public class Driver extends IUser implements IDriver {
 
     @Override
     public void AddNewFavArea(Area area) {
-        if(!favoriteAreas.contains(area)){
-            area.addDriver(this);
-            favoriteAreas.add(area);
-        }
+        area.addDriver(this);
+        favoriteAreas.add(area);
     }
 
     @Override
-    public void getFavAreas() {
-        for (int i = 0; i < favoriteAreas.size(); i++) {
-            System.out.println("Area " + (i + 1) + ": " + favoriteAreas.get(i));
-        }
+    public ArrayList<Area> getFavAreas() {
+       /* for (int i = 0; i < favoriteAreas.size(); i++) {
+            System.out.println("Area " + i + 1 + ": " + favoriteAreas.get(i));
+        }*/
+        return favoriteAreas;
 
     }
 
     @Override
-    public void listRides() {
-        for (int i = 0; i < rides.size(); i++) {
+    public ArrayList<Ride> listRides() {
+        /*for (int i = 0; i < rides.size(); i++) {
             System.out.println("ride " + i + 1 + ": " + rides.get(i));
-        }
+        }*/
+        return rides;
 
     }
 
     public String toString() {
-        return "Driving License" + getDrivingLicense() + "\n" + "National ID" + getNationalId();
+        return "Driver( username "+userName+ "  ,email "+email+"  ,Driving License" + getDrivingLicense() + "  ,National ID" + getNationalId()+")"+"\n";
     }
     @Override
     public void addRide(Ride ride){
         rides.add(ride);
+    }
+
+    @Override
+    public void listRates() {
+        rate.getRates();
     }
 
 }

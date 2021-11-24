@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class User extends IUser {
+    public User() {
+        super();
+    }
 
     private String phoneNum;
     private String email;
@@ -12,6 +15,15 @@ public class User extends IUser {
     public String getPhoneNum() {
         return phoneNum;
     }
+
+    public User(String userName, String password, String phoneNum, String email, Offer offer) {
+        super(userName, password);
+        this.phoneNum = phoneNum;
+        this.email = email;
+        this.offer = offer;
+
+    }
+
     private boolean verified;
     public void setVerified(boolean verified) {
         this.verified = verified;
@@ -60,7 +72,7 @@ public class User extends IUser {
 
     @Override
     public String toString() {
-        return "User [email=" + email + ", offer=" + offer + ", phoneNum=" + phoneNum + "]";
+        return "User(username= "+userName+" ,"+"email= " + email + ", offer=" + offer + ", phoneNum=" + phoneNum + ")"+"\n";
     }
 
     
