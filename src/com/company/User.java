@@ -58,16 +58,18 @@ public class User extends IUser {
         return ride;
     }
 
-    public void chooseOffer(ArrayList<Offer> offers) {
+    public Offer chooseOffer(ArrayList<Offer> offers) {
         System.out.println("Choose one of these offers");
         
         for (int i = 0; i < offers.size(); i++) {
-            System.out.println(i + 1 + ":" + offers.indexOf(i));
+            System.out.println((int)(i + 1) + ":" );
+            offers.get(i).to_String();
         }
         Scanner cs = new Scanner(System.in);
         int choise = cs.nextInt();
-        this.setOffer(offers.get(choise - 1));
+        //this.setOffer(offers.get(choise - 1));
 
+        return offers.get(choise-1);
     }
 
     @Override

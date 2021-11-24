@@ -32,7 +32,7 @@ public class Main {
         ((admin)admin1).verify(driver1);
         ((admin)admin1).verify(driver2);
         System.out.println(saving.retrieveUsers());
-        System.out.println("suspending user");
+        System.out.println("After suspending user");
         ((admin)admin1).suspend( user2);
         ((admin)admin1).suspend(driver1);
         System.out.println(saving.retrieveUsers());
