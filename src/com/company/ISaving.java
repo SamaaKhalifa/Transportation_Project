@@ -24,4 +24,6 @@ public interface ISaving {
     IUser searchIUser(String userName, String Password);
 
     IUser searchAdmin(String userName, String Password);
+
+    IArea searchArea(String name);
 }

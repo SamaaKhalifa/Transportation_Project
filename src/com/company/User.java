@@ -52,13 +52,9 @@ public class User extends IUser {
 
 
 
-    public Ride requestRide(String s, String d) {
-        IArea source = new Area();
-        IArea dest = new Area();
-        source.setName(s);
-        dest.setName(d);
-        Ride ride = new Ride(source, dest);
-        ride.checkSourceArea(source);
+    public Ride requestRide(IArea s, IArea d) {
+        Ride ride = new Ride(s, d);
+        ride.checkSourceArea(s);
         return ride;
     }
 
