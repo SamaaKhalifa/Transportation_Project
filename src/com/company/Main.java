@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-
 public class Main {
 
     public static void main(String[] args) {
@@ -48,7 +47,6 @@ public class Main {
             choice = in.nextInt();
             // registration.
             if (choice == 1) {
-
                 System.out.println("1:Register as a user!");
                 System.out.println("2:Register as a Driver!");
                 int registerChoice;
@@ -102,7 +100,7 @@ public class Main {
                     Registration registerDriver = new DriverRegister();
                     registerDriver.Register(driver);// done the registration.
 
-                    ((admin)admin1).verify(driver);
+                    ((admin) admin1).verify(driver);
 
                 } else {
                     System.out.println("invalid input!");
@@ -122,17 +120,17 @@ public class Main {
                 int loginChoice;
                 Scanner reqSc = new Scanner(System.in);
                 loginChoice = reqSc.nextInt();
-                if (iuser==null)
-                {
+                if (iuser == null) {
                     System.out.println("You should register before log in.");
                     continue;
                 }
-                iuser=saving.searchIUser(userName, Password);
+                iuser = saving.searchIUser(userName, Password);
                 // User login.
                 if (loginChoice == 1) {
 
                     Registration userRegister = new UserRegister();
-                    if (userRegister.login(iuser)==false)continue;
+                    if (userRegister.login(iuser) == false) continue;
+                    while (true){
                     System.out.println("1:would like to Request a ride?\n" + "2:Exit");
                     int ch;
                     Scanner sc = new Scanner(System.in);
@@ -144,82 +142,94 @@ public class Main {
                         source = charSc.nextLine();
                         System.out.println("Enter the destination area name:");
                         destination = charSc.nextLine();
-                        IArea Source=saving.searchArea(source);
-                        IArea Destination=saving.searchArea(destination);
-                        if(Source==null) {
-                            IArea Sour=new Area();
+                        IArea Source = saving.searchArea(source);
+                        IArea Destination = saving.searchArea(destination);
+                        if (Source == null) {
+                            IArea Sour = new Area();
                             Sour.setName(source);
-                            Source=Sour;
+                            Source = Sour;
                             saving.save((Area) Sour);
                         }
-                        if(Destination==null) {
-                            IArea Dest=new Area();
+                        if (Destination == null) {
+                            IArea Dest = new Area();
                             Dest.setName(destination);
-                            Destination=Dest;
+                            Destination = Dest;
                             saving.save((Area) Dest);
                         }
                         Ride ride = ((User) iuser).requestRide(Source, Destination);
                         saving.save(ride);
-                        if (saving.retrieveRide().isEmpty()) { 
+                        if (saving.retrieveRide().isEmpty()) {
                             System.out.println("there is no offer for this ride, please try again later!");
-                            System.out.println( "2bl continue "+saving.retrieveRide());
+                            System.out.println("2bl continue " + saving.retrieveRide());
                             continue;
                         }
-                      
-                        for (Ride r : saving.retrieveRide()) {
-                            System.out.println("ForLOOP");
-                            if (ride.equals(r)) { //la2etha
-                                System.out.println("Found ride");
-                                System.out.println(r.toString());
-                                if (r.listOffers() != null) { // feh offer
-                                    System.out.println("Offer");
-                                    r.listOffers();
 
-                                    
-                                }else{ //mfesh offer
+                        for (Ride r : saving.retrieveRide()) {
+                            if (ride.getSource().equals(r.getSource())&&ride.getDestenation().equals(r.getDestenation())) { //la2etha
+                                if (!r.getOffers().isEmpty()) { // feh offer
+                                    System.out.println("Offer");
+                                    Offer offer=((User)iuser).chooseOffer(r.getOffers());
+                                    System.out.println("Please rate the driver of the Ride from 1 to 5:");
+                                    Scanner sin = new Scanner(System.in);
+                                    int rate = sin.nextInt();
+                                    offer.getDriver().rateMe(rate);
+                                   // System.out.println(offer.getDriver().toString());
+
+                                } else { //mfesh offer
                                     System.out.println("there is no offer for this ride, please try again later!");
                                 }
-                             break;
-                                
-                            } 
-                            
+                                break;
+
+                            }
+
                         }
 
-                       
+
                     } else if (ch == 2) { //exit
-                        continue;
+                        break;
                     }
 
-                }
+                }}
                 // Driver login.
                 else if (loginChoice == 2) {
                     Registration driverRegister = new DriverRegister();
-                    if (driverRegister.login(iuser)==false)continue;
-                    System.out.println("1:Add Area\n2:List all rides\n3: list user rating");
+                    if (driverRegister.login(iuser) == false) continue;
+                    while (true){
+                    System.out.println("1:Add Area\n2:List all rides\n3:list user rating\n4:Exit");
                     Scanner sc = new Scanner(System.in);
-                    int driverCh=sc.nextInt();
-                    if(driverCh==1){// add area
+                    int driverCh = sc.nextInt();
+                    if (driverCh == 1) {// add area
                         System.out.println("Enter the name of the area you want to add:");
                         Scanner scar = new Scanner(System.in);
-                        String area=scar.nextLine();
-                        IArea ar=saving.searchArea(area);
-                        if(ar==null){
-                            IArea area1=new Area();
+                        String area = scar.nextLine();
+                        IArea ar = saving.searchArea(area);
+                        if (ar == null) {
+                            IArea area1 = new Area();
                             area1.setName(area);
                             saving.save((Area) area1);
-                            ar=area1;
+                            ar = area1;
                         }
-                        ((Driver)iuser).AddNewFavArea((Area) ar);
-                        ((Driver)iuser).getFavAreas();
+                        ((Driver) iuser).AddNewFavArea((Area) ar);
+                        ((Driver) iuser).getFavAreas();
 
-                    }else if ( driverCh==2){// list all rides
-                        ((Driver)iuser).listRides();
+                    } else if (driverCh == 2) {// list all rides
+                        ((Driver) iuser).listRides();
+                        System.out.println("Enter the no. of Ride you want to add an offer to it:");
+                        Scanner sin = new Scanner(System.in);
+                        int rideNo = sin.nextInt();
+                        IRide ride = ((Driver) iuser).getRides().get(rideNo - 1);
+                        ((Driver) iuser).makeOffer((Ride) ride);
 
-                    }else if( driverCh==3){// list rating
+                    } else if (driverCh == 3) {// list rating
 
+                        for(int rate:((Driver) iuser).getRate().getRates()){
+                            System.out.println(rate);
+                        }
+                    }else{
+                        break;
                     }
 
-                } else {
+                }} else {
                     System.out.println("invalid input!");
                 }
 
