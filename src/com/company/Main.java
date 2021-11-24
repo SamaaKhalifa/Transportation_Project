@@ -14,6 +14,31 @@ public class Main {
         admin1.setUserName("Admin1");
         admin1.setPassword("12345");
         saving.addAdmin(admin1);
+        System.out.println("Admin section");
+        IUser user1=new User("Nada","123","011","Nada@",null);
+        IUser user2=new User("Yomna","345","010","Yomna@",null);
+        IUser driver1=new Driver("Noura","456","000","5555","012","Noura@");
+        IUser driver2=new Driver("Samaa","789","111","6666","015","Samaa@");
+        Registration reg=new UserRegister();
+        reg.Register(user1);
+        reg.Register(user2);
+        reg=new DriverRegister();
+        reg.Register(driver1);
+        reg.Register(driver2);
+        System.out.println("users");
+        System.out.println(saving.retrieveUsers());
+        System.out.println("list pending users");
+        System.out.println(((admin)admin1).listPendingRegistration());
+        System.out.println("After verifying");
+        ((admin)admin1).verify(driver1);
+        ((admin)admin1).verify(driver2);
+        System.out.println(saving.retrieveUsers());
+        System.out.println("suspending user");
+        ((admin)admin1).suspend( user2);
+        ((admin)admin1).suspend(driver1);
+        System.out.println(saving.retrieveUsers());
+
+
         while (true) {
             int choice;
             Scanner in = new Scanner(System.in);
@@ -154,8 +179,6 @@ public class Main {
                 }
                 // Driver login.
                 else if (loginChoice == 2) {
-
-
                     Registration driverRegister = new DriverRegister();
                     if (driverRegister.login(iuser)==false)continue;
 

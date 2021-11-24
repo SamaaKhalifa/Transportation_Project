@@ -10,8 +10,9 @@ public class admin extends IUser {
             if (iuser.equals(user)) {
                 if(iuser instanceof User) ((User)iuser).setVerified(false);
                 if(iuser instanceof Driver) ((Driver)iuser).setVerified(false);
-                saving.retrievePended().add(user);
+                saving.savePended(user);
                 saving.retrieveUsers().remove(user);
+                break;
             }
         }
     }
@@ -47,10 +48,10 @@ public class admin extends IUser {
 
     public void verify(IUser driver) {
         for (IUser itdriver : saving.retrievePended()) {
-            System.out.println( "in loop"+itdriver.toString());
+            //System.out.println( "in loop"+itdriver.toString());
             if (driver.equals(itdriver) && itdriver instanceof Driver) {
                 ((Driver) driver).setVerified(true);
-                System.out.println( "in if");
+               // System.out.println( "in if");
                 saving.retrievePended().remove(driver);
                 saving.saveUser(driver);
                 break;
