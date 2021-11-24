@@ -12,9 +12,11 @@ public class User extends IUser {
     private String phoneNum;
     private String email;
     private Offer offer;
+    private boolean verified;
     public String getPhoneNum() {
         return phoneNum;
     }
+
 
     public User(String userName, String password, String phoneNum, String email, Offer offer) {
         super(userName, password);
@@ -24,7 +26,8 @@ public class User extends IUser {
 
     }
 
-    private boolean verified;
+    
+
     public void setVerified(boolean verified) {
         this.verified = verified;
     }

@@ -9,9 +9,10 @@ public class Offer {
     public void setPrice (double price ) {
             this.price=price;
     }
-
     public void to_String(){
         System.out.println("Price: "+price+"\n"+"Driver info: "+driver);
     }
-
+    public Driver getDriver() {
+        return driver;
     }
+}
