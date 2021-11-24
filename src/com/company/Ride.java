@@ -6,6 +6,8 @@ public class Ride implements IRide {
     private IArea source;
     private IArea Destenation ;
     private ArrayList<Offer> offers;
+
+    
     public Ride(IArea source, IArea Destenation) {
         this.source = source;
         this.Destenation = Destenation;

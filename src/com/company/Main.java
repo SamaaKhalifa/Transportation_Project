@@ -3,8 +3,6 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
-
 public class Main {
 
     public static void main(String[] args) {
@@ -77,7 +75,7 @@ public class Main {
                     Registration registerDriver = new DriverRegister();
                     registerDriver.Register(driver);// done the registration.
 
-                    ((admin)admin1).verify(driver);
+                    ((admin) admin1).verify(driver);
 
                 } else {
                     System.out.println("invalid input!");
@@ -97,22 +95,22 @@ public class Main {
                 int loginChoice;
                 Scanner reqSc = new Scanner(System.in);
                 loginChoice = reqSc.nextInt();
-                if (iuser==null)
-                {
+                if (iuser == null) {
                     System.out.println("You should register before log in.");
                     continue;
                 }
-                iuser=saving.searchIUser(userName, Password);
+                iuser = saving.searchIUser(userName, Password);
                 // User login.
                 if (loginChoice == 1) {
 
                     Registration userRegister = new UserRegister();
-                    if (userRegister.login(iuser)==false)continue;
+                    if (userRegister.login(iuser) == false)
+                        continue;
                     System.out.println("1:would like to Request a ride?\n" + "2:Exit");
                     int ch;
                     Scanner sc = new Scanner(System.in);
                     ch = sc.nextInt();
-                    if (ch == 1) { //req ride
+                    if (ch == 1) { // req ride
                         String Source, destination;
                         Scanner charSc = new Scanner(System.in);
                         System.out.println("Enter the source area name:");
@@ -121,33 +119,31 @@ public class Main {
                         destination = charSc.nextLine();
                         Ride ride = ((User) iuser).requestRide(Source, destination);
                         saving.save(ride);
-                        if (saving.retrieveRide().isEmpty()) { 
+                        if (saving.retrieveRide().isEmpty()) {
                             System.out.println("there is no offer for this ride, please try again later!");
-                            System.out.println( "2bl continue "+saving.retrieveRide());
+                            System.out.println("2bl continue " + saving.retrieveRide());
                             continue;
                         }
-                      
+
                         for (Ride r : saving.retrieveRide()) {
                             System.out.println("ForLOOP");
-                            if (ride.equals(r)) { //la2etha
+                            if (ride.equals(r)) { // la2etha
                                 System.out.println("Found ride");
-                           
+
                                 if (r.listOffers() != null) { // feh offer
                                     System.out.println("Offer");
                                     r.listOffers();
 
-                                    
-                                }else{ //mfesh offer
+                                } else { // mfesh offer
                                     System.out.println("there is no offer for this ride, please try again later!");
                                 }
-                             break;
-                                
-                            } 
-                            
+                                break;
+
+                            }
+
                         }
 
-                       
-                    } else if (ch == 2) { //exit
+                    } else if (ch == 2) { // exit
                         continue;
                     }
 
@@ -155,9 +151,21 @@ public class Main {
                 // Driver login.
                 else if (loginChoice == 2) {
 
-
                     Registration driverRegister = new DriverRegister();
-                    if (driverRegister.login(iuser)==false)continue;
+                    if (driverRegister.login(iuser) == false)
+                        continue;
+                    System.out.println("1:Add Area/n 2:List all rides/n 3: list user rating");
+                    Scanner sc = new Scanner(System.in);
+                    int driverCh = sc.nextInt();
+                    if (driverCh == 1) {// add area
+                        Scanner scar = new Scanner(System.in);
+                        String driverCh = sc.nextInt();
+
+                    } else if (driverCh == 2) {// list all rides
+
+                    } else if (driverCh == 3) {// list rating
+
+                    }
 
                 } else {
                     System.out.println("invalid input!");
@@ -166,10 +174,7 @@ public class Main {
             } else {
                 System.out.println("thank you for using our amazing app!!!");
                 System.exit(0);
-
             }
-
         }
-
     }
 }

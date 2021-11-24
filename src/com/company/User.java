@@ -9,10 +9,10 @@ public class User extends IUser {
     private String phoneNum;
     private String email;
     private Offer offer;
+    private boolean verified;
     public String getPhoneNum() {
         return phoneNum;
     }
-    private boolean verified;
     public void setVerified(boolean verified) {
         this.verified = verified;
     }
