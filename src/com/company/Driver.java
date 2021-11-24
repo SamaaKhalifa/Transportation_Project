@@ -10,8 +10,16 @@ public class Driver extends IUser implements IDriver {
     private String nationalId;
     private ArrayList<Area> favoriteAreas = new ArrayList<>();
     private ArrayList<Ride> rides = new ArrayList<>();
-    private Rate rate;
-    private double AvgRate;
+    private Rate rate=new Rate();
+
+    public ArrayList<Ride> getRides() {
+        return rides;
+    }
+
+    public Rate getRate() {
+        return rate;
+    }
+
     private String phoneNum;
     private String email;
     private boolean verified;
@@ -45,10 +53,6 @@ public class Driver extends IUser implements IDriver {
         return nationalId;
     }
 
-    public double getAvgRate() {
-        return AvgRate;
-    }
-
     public String getPhoneNum() {
         return phoneNum;
     }
@@ -79,7 +83,6 @@ public class Driver extends IUser implements IDriver {
         newOffer.setDriver(this);
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the Price you want in this offer");
-
         double price = input.nextDouble();
         newOffer.setPrice(price);
         ride.addOffer(newOffer);
@@ -104,13 +107,13 @@ public class Driver extends IUser implements IDriver {
     @Override
     public void listRides() {
         for (int i = 0; i < rides.size(); i++) {
-            System.out.println("ride " + i + 1 + ": " + rides.get(i));
+            System.out.println("ride " + (int)(i + 1) + ": " + rides.get(i));
         }
 
     }
 
     public String toString() {
-        return "Driving License" + getDrivingLicense() + "\n" + "National ID" + getNationalId();
+        return "Driver name:"+getUserName()+"\nAvg rating: "+getAvgRating()+"\nDriving License: " + getDrivingLicense() + "\nNational ID: " + getNationalId();
     }
     @Override
     public void addRide(Ride ride){
