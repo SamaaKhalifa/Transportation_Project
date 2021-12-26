@@ -6,7 +6,6 @@ public interface ISaving {
     void saveUser(IUser user);
 
     void savePended(IUser pended);
-
     void save(Area area);
 
     void save(Ride ride);

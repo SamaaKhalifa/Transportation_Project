@@ -10,8 +10,7 @@ public class Driver extends IUser implements IDriver {
     private String nationalId;
     private ArrayList<Area> favoriteAreas = new ArrayList<>();
     private ArrayList<Ride> rides = new ArrayList<>();
-    private Rate rate;
-    private double AvgRate;
+    private Rate rate=new Rate();
     private String phoneNum;
     private String email;
     private boolean verified;
@@ -45,9 +44,6 @@ public class Driver extends IUser implements IDriver {
         return nationalId;
     }
 
-    public double getAvgRate() {
-        return AvgRate;
-    }
 
     public String getPhoneNum() {
         return phoneNum;
@@ -91,7 +87,6 @@ public class Driver extends IUser implements IDriver {
         newOffer.setDriver(this);
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the Price you want in this offer");
-
         double price = input.nextDouble();
         newOffer.setPrice(price);
         ride.addOffer(newOffer);
@@ -102,7 +97,6 @@ public class Driver extends IUser implements IDriver {
         area.addDriver(this);
         favoriteAreas.add(area);
     }
-
     @Override
     public ArrayList<Area> getFavAreas() {
        /* for (int i = 0; i < favoriteAreas.size(); i++) {
@@ -113,25 +107,30 @@ public class Driver extends IUser implements IDriver {
     }
 
     @Override
-    public ArrayList<Ride> listRides() {
-        /*for (int i = 0; i < rides.size(); i++) {
-            System.out.println("ride " + i + 1 + ": " + rides.get(i));
-        }*/
-        return rides;
+    public void listRides() {
+        for (int i = 0; i < rides.size(); i++) {
+            System.out.println("ride " + (int)(i + 1) + ": " + rides.get(i));
+        }
 
     }
 
     public String toString() {
-        return "Driver( username "+userName+ "  ,email "+email+"  ,Driving License" + getDrivingLicense() + "  ,National ID" + getNationalId()+")"+"\n";
+        return "Driver( username "+userName+" ,Avg rating "+getAvgRating()+ "  ,email "+email+"  ,Driving License" + getDrivingLicense() + "  ,National ID" + getNationalId()+")"+"\n";
     }
+
+    @Override
+    public ArrayList<Ride> getRides() {
+        return rides;
+    }
+
+    public Rate getRate() {
+        return rate;
+    }
+
     @Override
     public void addRide(Ride ride){
         rides.add(ride);
     }
 
-    @Override
-    public void listRates() {
-        rate.getRates();
-    }
 
 }
