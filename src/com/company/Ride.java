@@ -1,10 +1,27 @@
 package com.company;
-
 import java.util.ArrayList;
 
 public class Ride implements IRide {
     private IArea source;
     private IArea Destenation ;
+    private String start;
+    private String end;
+    private double cost;// el offer price that driver made + discount
+    public void setStart(String start) {
+        this.start = start;
+    }
+
+    public void setEnd(String end) {
+        this.end = end;
+    }
+
+    public String getStart() {
+        return start;
+    }
+
+    public String getEnd() {
+        return end;
+    }
 
     private ArrayList<Offer> offers=new ArrayList<>();
 
