@@ -38,7 +38,7 @@ public class User {
 
     }
 
-    public void chooseOffer(ArrayList<Offer> offers) {
+    public Offer chooseOffer(ArrayList<Offer> offers) {
         System.out.println("Choose one of these offers");
         int i;
         for (i = 0; i < offers.length; i++) {
@@ -46,7 +46,11 @@ public class User {
         }
         Scanner cs = new Scanner(System.in);
         int choise = cs.nextInt();
+<<<<<<< Updated upstream
         this.setOffer(offers.git(i - 1));
+=======
+         return offers.get(choise - 1);
+>>>>>>> Stashed changes
 
     }
 
