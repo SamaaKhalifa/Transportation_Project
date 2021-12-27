@@ -149,6 +149,7 @@ public class Main {
                         destination = charSc.nextLine();
                         IArea Source = saving.searchArea(source);
                         IArea Destination = saving.searchArea(destination);
+
                         if (Source == null) {
                             IArea Sour = new Area();
                             Sour.setName(source);

@@ -5,6 +5,13 @@ import java.util.ArrayList;
 public class admin extends IUser {
     ISaving saving = new arraySaving();
 
+    public void addDiscount(Area area){
+           for (Area area1:saving.retrieveArea()){
+               if(area.getName()==area1.getName()){
+                   area.setHasAdminDiscount(true);
+               }
+           }
+    }
     public void suspend(IUser user) {
         for (IUser iuser : saving.retrieveUsers()) {
             if (iuser.equals(user)) {
@@ -76,6 +83,7 @@ public class admin extends IUser {
             System.out.println("You logged in successfully.");
         }
     }
+
 
 
 }
