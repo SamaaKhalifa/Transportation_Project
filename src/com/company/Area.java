@@ -7,18 +7,15 @@ public class Area implements IArea {
 
     private ArrayList<IDriver> drivers = new ArrayList<>();
     private String name;
+    private boolean hasAdminDiscount;
 
     public boolean getAdminDiscount() {
         return hasAdminDiscount;
     }
 
-    private boolean hasAdminDiscount;
-
     public void setHasAdminDiscount(boolean hasAdminDiscount) {
         this.hasAdminDiscount = hasAdminDiscount;
     }
-
-
 
     public void setName(String name) {
         this.name = name;
