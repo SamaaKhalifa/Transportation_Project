@@ -175,10 +175,14 @@ public class Main {
                                     if (!r.getOffers().isEmpty()) { // feh offer
                                         System.out.println("Offer");
                                         Offer offer = ((User)iuser).chooseOffer(r);
+                                        System.out.println("****************************************************************");
+                                        ((admin) admin1).showEvents(r);
                                         System.out.println("Please rate the driver of the Ride from 1 to 5:");
                                         Scanner sin = new Scanner(System.in);
                                         int rate = sin.nextInt();
-                                        offer.getDriver().rateMe(rate);
+                                        offer.getDriver().rateMe(rate ,((User)iuser));
+                                        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                                        ((admin) admin1).showEvents(r);
                                         // System.out.println(offer.getDriver().toString());
 
                                     } else { //mfesh offer
@@ -229,6 +233,7 @@ public class Main {
                             int rideNo = sin.nextInt();
                             IRide ride = ((Driver) iuser).getRides().get(rideNo - 1);
                             ((Driver) iuser).makeOffer((Ride) ride);
+                            ((admin) admin1).showEvents((Ride)ride);
 
                         } else if (driverCh == 3) {// list rating
 

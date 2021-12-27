@@ -3,14 +3,23 @@ package com.company;
 import java.util.ArrayList;
 
 public class Ride implements IRide {
-    private IArea source;
 
+    private IArea source;
     private IArea Destenation ;
     private boolean start,end;
+
+    public ArrayList<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(ArrayList<Event> events) {
+        this.events = events;
+    }
 
     private ArrayList <Event> events = new ArrayList<>();
 
     private ArrayList<Offer> offers=new ArrayList<>();
+
     public void setStart(boolean start) {
         this.start = start;
     }

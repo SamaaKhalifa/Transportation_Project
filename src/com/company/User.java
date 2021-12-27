@@ -2,6 +2,7 @@ package com.company;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class User extends IUser {
@@ -68,12 +69,22 @@ public class User extends IUser {
         }
         Scanner cs = new Scanner(System.in);
         int choise = cs.nextInt();
-        //this.setOffer(offers.get(choise - 1));
+
+        this.setOffer(ride.getOffers().get(choise - 1));
 
         LocalTime time = LocalTime.now();
         String Time = time.toString();
-        Event event = new AcceptanceEvent(this , Time);
-        ride.addEvent(event);
+        Event event1 = new AcceptanceEvent(this , Time);
+        ride.addEvent(event1);
+        LocalTime time2;
+        if(time.getMinute() + 30 > 60)
+             time2 = LocalTime.of(time.getHour()+1, time.getMinute(), time.getSecond());
+        else
+            time2 = LocalTime.of(time.getHour(), time.getMinute()+30, time.getSecond());
+
+        String Time2 = time2.toString();
+        Event event2 = new SourceEvent(this , offer.getDriver(), Time2);
+        ride.addEvent(event2);
 
         return ride.getOffers().get(choise-1);
     }
