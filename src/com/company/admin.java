@@ -13,6 +13,14 @@ public class admin extends IUser {
         }
     }
 
+    public void showEvents(Ride ride)
+    {
+        for(Event event : ride.getEvents())
+        {
+            event.printEvent();
+        }
+    }
+
     public void suspend(IUser user) {
         for (IUser iuser : saving.retrieveUsers()) {
             if (iuser.equals(user)) {
@@ -68,8 +76,6 @@ public class admin extends IUser {
         }
     }
 
-
-
     public ArrayList<IUser> listPendingRegistration() {
         return saving.retrievePended();
     }
@@ -84,6 +90,4 @@ public class admin extends IUser {
             System.out.println("You logged in successfully.");
         }
     }
-
-
 }

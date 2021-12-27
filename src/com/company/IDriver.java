@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface IDriver {
     double getAvgRating();
-    void rateMe(int rate);
+    void rateMe(int rate , User user);
     void makeOffer(Ride ride);
     void AddNewFavArea(Area area);
     ArrayList<Ride> getRides();

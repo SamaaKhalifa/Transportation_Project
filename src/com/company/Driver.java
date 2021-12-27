@@ -17,6 +17,7 @@ public class Driver extends IUser implements IDriver {
     private String email;
     private boolean verified;
     private double balance;
+    private Ride choosenRide ;
 
     public void setBalance(double balance) {
         this.balance = balance;
@@ -74,8 +75,20 @@ public class Driver extends IUser implements IDriver {
     }
 
     @Override
-    public void rateMe(int rate) {
+    public void rateMe(int rate , User user)
+    {
         this.rate.addRate(rate);
+
+        LocalTime time = LocalTime.now();
+        LocalTime time1;
+        if(time.getMinute() + 20 > 60)
+            time1 = LocalTime.of(time.getHour() + 2 , time.getMinute(), time.getSecond());
+        else
+            time1 = LocalTime.of(time.getHour() + 1 , time.getMinute()+20 , time.getSecond());
+
+        String Time = time1.toString();
+        Event event = new DestinationEvent(user ,this , Time);
+        choosenRide.addEvent(event);
     }
 
     public Driver() {
@@ -92,6 +105,8 @@ public class Driver extends IUser implements IDriver {
 
     @Override
     public void makeOffer(Ride ride) {
+        this.choosenRide = ride;
+
         Offer newOffer = new Offer();
         newOffer.setDriver(this);
         Scanner input = new Scanner(System.in);
@@ -103,7 +118,7 @@ public class Driver extends IUser implements IDriver {
         LocalTime time = LocalTime.now();
         String Time = time.toString();
         Event event = new PriceEvent(newOffer , Time);
-        ride.addEvent(event);
+        choosenRide.addEvent(event);
     }
 
     @Override
@@ -143,13 +158,14 @@ public class Driver extends IUser implements IDriver {
     public void addRide(Ride ride){
         rides.add(ride);
     }
-    public void startRide(Ride ride){
-        ride.setStart(true);
-        ride.setEnd(false);
 
+    public void startRide(){
+        choosenRide.setStart(true);
+        choosenRide.setEnd(false);
     }
-    public void endRide(Ride ride){
-        ride.setStart(false);
-        ride.setEnd(true);
+
+    public void endRide(){
+        choosenRide.setStart(false);
+        choosenRide.setEnd(true);
     }
 }
