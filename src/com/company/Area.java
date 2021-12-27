@@ -32,7 +32,7 @@ public class Area implements IArea {
     public void notifyDriver(Ride ride) {
         ArrayList<Offer>offers =new ArrayList<>();
         for (int i = 0; i < drivers.size(); i++) {
-           drivers.get(i).addRide(ride);
+            drivers.get(i).addRide(ride);
         }
 
 
@@ -56,9 +56,9 @@ public class Area implements IArea {
     }
 
 
-   
 
-    
 
-   
+
+
+
 }

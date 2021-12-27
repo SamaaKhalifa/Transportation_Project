@@ -2,7 +2,7 @@ package com.company;
 
 public abstract class IUser {
     protected String userName ;
-    
+
     protected String password ;
 
     public IUser() {

@@ -1,6 +1,8 @@
 package com.company;
 
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,16 +16,6 @@ public class Driver extends IUser implements IDriver {
     private String phoneNum;
     private String email;
     private boolean verified;
-    private double balance;
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
 
     public void setVerified(boolean verified) {
         this.verified = verified;
@@ -46,7 +38,7 @@ public class Driver extends IUser implements IDriver {
     public void setEmail(String email) {
         this.email = email;
 
-    };
+    }
     public String getDrivingLicense() {
         return drivingLicense;
     }
@@ -54,7 +46,6 @@ public class Driver extends IUser implements IDriver {
     public String getNationalId() {
         return nationalId;
     }
-
 
     public String getPhoneNum() {
         return phoneNum;
@@ -64,11 +55,9 @@ public class Driver extends IUser implements IDriver {
         return email;
     }
 
-
     public boolean isVerified() {
         return verified;
     }
-
 
     @Override
     public double getAvgRating() {
@@ -101,6 +90,11 @@ public class Driver extends IUser implements IDriver {
         double price = input.nextDouble();
         newOffer.setPrice(price);
         ride.addOffer(newOffer);
+
+        LocalTime time = LocalTime.now();
+        String Time = time.toString();
+        Event event = new PriceEvent(newOffer , Time);
+        ride.addEvent(event);
     }
 
     @Override
@@ -114,7 +108,6 @@ public class Driver extends IUser implements IDriver {
             System.out.println("Area " + i + 1 + ": " + favoriteAreas.get(i));
         }*/
         return favoriteAreas;
-
     }
 
     @Override
@@ -122,7 +115,6 @@ public class Driver extends IUser implements IDriver {
         for (int i = 0; i < rides.size(); i++) {
             System.out.println("ride " + (int)(i + 1) + ": " + rides.get(i));
         }
-
     }
 
     public String toString() {
@@ -142,6 +134,4 @@ public class Driver extends IUser implements IDriver {
     public void addRide(Ride ride){
         rides.add(ride);
     }
-
-
 }

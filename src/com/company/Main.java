@@ -133,115 +133,114 @@ public class Main {
                     if (userRegister.login(iuser) == false) continue;
                     while (true){
 
-                    System.out.println("1:would like to Request a ride?\n" + "2:Exit");
-                    int ch;
-                    Scanner sc = new Scanner(System.in);
-                    ch = sc.nextInt();
+                        System.out.println("1:would like to Request a ride?\n" + "2:Exit");
+                        int ch;
+                        Scanner sc = new Scanner(System.in);
+                        ch = sc.nextInt();
 
 
-                    if (ch == 1) { //req ride
-                        String source, destination;
+                        if (ch == 1) { //req ride
+                            String source, destination;
 
-                        Scanner charSc = new Scanner(System.in);
-                        System.out.println("Enter the source area name:");
-                        source = charSc.nextLine();
-                        System.out.println("Enter the destination area name:");
-                        destination = charSc.nextLine();
-                        IArea Source = saving.searchArea(source);
-                        IArea Destination = saving.searchArea(destination);
+                            Scanner charSc = new Scanner(System.in);
+                            System.out.println("Enter the source area name:");
+                            source = charSc.nextLine();
+                            System.out.println("Enter the destination area name:");
+                            destination = charSc.nextLine();
+                            IArea Source = saving.searchArea(source);
+                            IArea Destination = saving.searchArea(destination);
+                            if (Source == null) {
+                                IArea Sour = new Area();
+                                Sour.setName(source);
+                                Source = Sour;
+                                saving.save((Area) Sour);
+                            }
+                            if (Destination == null) {
+                                IArea Dest = new Area();
+                                Dest.setName(destination);
+                                Destination = Dest;
+                                saving.save((Area) Dest);
+                            }
+                            Ride ride = ((User) iuser).requestRide(Source, Destination);
+                            saving.save(ride);
+                            if (saving.retrieveRide().isEmpty()) {
+                                System.out.println("there is no offer for this ride, please try again later!");
+                                System.out.println("2bl continue " + saving.retrieveRide());
+                                continue;
+                            }
 
-                        if (Source == null) {
-                            IArea Sour = new Area();
-                            Sour.setName(source);
-                            Source = Sour;
-                            saving.save((Area) Sour);
-                        }
-                        if (Destination == null) {
-                            IArea Dest = new Area();
-                            Dest.setName(destination);
-                            Destination = Dest;
-                            saving.save((Area) Dest);
-                        }
-                        Ride ride = ((User) iuser).requestRide(Source, Destination);
-                        saving.save(ride);
-                        if (saving.retrieveRide().isEmpty()) {
-                            System.out.println("there is no offer for this ride, please try again later!");
-                            System.out.println("2bl continue " + saving.retrieveRide());
-                            continue;
-                        }
+                            for (Ride r : saving.retrieveRide()) {
 
-                        for (Ride r : saving.retrieveRide()) {
+                                if (ride.getSource().equals(r.getSource())&&ride.getDestenation().equals(r.getDestenation())) { //la2etha
+                                    if (!r.getOffers().isEmpty()) { // feh offer
+                                        System.out.println("Offer");
+                                        Offer offer = ((User)iuser).chooseOffer(r);
+                                        System.out.println("Please rate the driver of the Ride from 1 to 5:");
+                                        Scanner sin = new Scanner(System.in);
+                                        int rate = sin.nextInt();
+                                        offer.getDriver().rateMe(rate);
+                                        // System.out.println(offer.getDriver().toString());
 
-                            if (ride.getSource().equals(r.getSource())&&ride.getDestenation().equals(r.getDestenation())) { //la2etha
-                                if (!r.getOffers().isEmpty()) { // feh offer
-                                    System.out.println("Offer");
-                                    Offer offer=((User)iuser).chooseOffer(r.getOffers());
-                                    System.out.println("Please rate the driver of the Ride from 1 to 5:");
-                                    Scanner sin = new Scanner(System.in);
-                                    int rate = sin.nextInt();
-                                    offer.getDriver().rateMe(rate);
-                                   // System.out.println(offer.getDriver().toString());
+                                    } else { //mfesh offer
 
-                                } else { //mfesh offer
+                                        System.out.println("there is no offer for this ride, please try again later!");
+                                    }
+                                    break;
 
-                                    System.out.println("there is no offer for this ride, please try again later!");
                                 }
-                                break;
 
                             }
 
+
+
+                        } else if (ch == 2) { //exit
+                            break;
+
                         }
 
-
-
-                    } else if (ch == 2) { //exit
-                        break;
-
-                    }
-
-                }}
+                    }}
                 // Driver login.
                 else if (loginChoice == 2) {
                     Registration driverRegister = new DriverRegister();
                     if (driverRegister.login(iuser) == false) continue;
                     while (true){
-                    System.out.println("1:Add Area\n2:List all rides\n3:list user rating\n4:Exit");
-                    Scanner sc = new Scanner(System.in);
-                    int driverCh = sc.nextInt();
-                    if (driverCh == 1) {// add area
-                        System.out.println("Enter the name of the area you want to add:");
-                        Scanner scar = new Scanner(System.in);
-                        String area = scar.nextLine();
-                        IArea ar = saving.searchArea(area);
-                        if (ar == null) {
-                            IArea area1 = new Area();
-                            area1.setName(area);
-                            saving.save((Area) area1);
-                            ar = area1;
+                        System.out.println("1:Add Area\n2:List all rides\n3:list user rating\n4:Exit");
+                        Scanner sc = new Scanner(System.in);
+                        int driverCh = sc.nextInt();
+                        if (driverCh == 1) {// add area
+                            System.out.println("Enter the name of the area you want to add:");
+                            Scanner scar = new Scanner(System.in);
+                            String area = scar.nextLine();
+                            IArea ar = saving.searchArea(area);
+                            if (ar == null) {
+                                IArea area1 = new Area();
+                                area1.setName(area);
+                                saving.save((Area) area1);
+                                ar = area1;
+                            }
+                            ((Driver) iuser).AddNewFavArea((Area) ar);
+                            ((Driver) iuser).getFavAreas();
+
+
+                        } else if (driverCh == 2) {// list all rides
+                            ((Driver) iuser).listRides();
+                            System.out.println("Enter the no. of Ride you want to add an offer to it:");
+                            Scanner sin = new Scanner(System.in);
+                            int rideNo = sin.nextInt();
+                            IRide ride = ((Driver) iuser).getRides().get(rideNo - 1);
+                            ((Driver) iuser).makeOffer((Ride) ride);
+
+                        } else if (driverCh == 3) {// list rating
+
+
+                            for(int rate:((Driver) iuser).getRate().getRates()){
+                                System.out.println(rate);
+                            }
+                        }else{
+                            break;
                         }
-                        ((Driver) iuser).AddNewFavArea((Area) ar);
-                        ((Driver) iuser).getFavAreas();
 
-
-           } else if (driverCh == 2) {// list all rides
-                        ((Driver) iuser).listRides();
-                        System.out.println("Enter the no. of Ride you want to add an offer to it:");
-                        Scanner sin = new Scanner(System.in);
-                        int rideNo = sin.nextInt();
-                        IRide ride = ((Driver) iuser).getRides().get(rideNo - 1);
-                        ((Driver) iuser).makeOffer((Ride) ride);
-
-                    } else if (driverCh == 3) {// list rating
-
-
-                        for(int rate:((Driver) iuser).getRate().getRates()){
-                            System.out.println(rate);
-                        }
-                    }else{
-                        break;
-                    }
-
-                }} else {
+                    }} else {
                     System.out.println("invalid input!");
                 }
 

@@ -7,7 +7,10 @@ public class Offer {
         this.driver=driver;
     }
     public void setPrice (double price ) {
-            this.price=price;
+        this.price=price;
+    }
+    public double getPrice() {
+        return price;
     }
     public void to_String(){
         System.out.println("Price: "+price+"\n"+"Driver info: "+driver);
