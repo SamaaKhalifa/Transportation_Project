@@ -1,11 +1,11 @@
 package com.company;
 
 public class AdminRegister extends  Registration {
-     @Override
+    @Override
 
     public boolean login(IUser iuser) {
         IUser result;
-         boolean ans=false;
+        boolean ans=false;
 
         result = obj.searchAdmin(iuser.getUserName(), iuser.getPassword());
 
@@ -14,7 +14,7 @@ public class AdminRegister extends  Registration {
 
             ans=false;
         } else {
-             ans=true;
+            ans=true;
             System.out.println("You logged in successfully.");
         }
         return ans;

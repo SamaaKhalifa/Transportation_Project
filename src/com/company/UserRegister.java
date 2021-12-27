@@ -25,15 +25,15 @@ public class UserRegister extends Registration {
 
         if (iuser instanceof User) {
 
-                if (((User) iuser).getVerified() == true) {
-                    System.out.println("You logged in successfully.");
-                    ans=true;
-                } else {
-                    System.out.println("You are not verified yet!");
-                    ans=false;
+            if (((User) iuser).getVerified() == true) {
+                System.out.println("You logged in successfully.");
+                ans=true;
+            } else {
+                System.out.println("You are not verified yet!");
+                ans=false;
 
-                }
             }
+        }
 
 
         else{

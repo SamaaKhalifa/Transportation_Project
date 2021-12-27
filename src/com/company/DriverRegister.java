@@ -21,14 +21,14 @@ public class DriverRegister extends Registration{
         if (iuser instanceof Driver) {
 
 
-                if (((Driver) iuser).getVerified() == true) {
-                    ans=true;
-                    System.out.println("You logged in successfully.");
-                } else {
-                    ans=false;
-                    System.out.println("You are not verified yet!");
-                }
+            if (((Driver) iuser).getVerified() == true) {
+                ans=true;
+                System.out.println("You logged in successfully.");
+            } else {
+                ans=false;
+                System.out.println("You are not verified yet!");
             }
+        }
 
         else{
             System.out.println("you are not driver");

@@ -26,7 +26,7 @@ public class User extends IUser {
 
     }
 
-    
+
 
     public void setVerified(boolean verified) {
         this.verified = verified;
@@ -63,7 +63,7 @@ public class User extends IUser {
 
     public Offer chooseOffer(ArrayList<Offer> offers) {
         System.out.println("Choose one of these offers");
-        
+
         for (int i = 0; i < offers.size(); i++) {
             System.out.println((int)(i + 1) + ":" );
             offers.get(i).to_String();
@@ -80,5 +80,5 @@ public class User extends IUser {
         return "User(username= "+userName+" ,"+"email= " + email + ", offer=" + offer + ", phoneNum=" + phoneNum + ")"+"\n";
     }
 
-    
+
 }

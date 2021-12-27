@@ -1,27 +1,10 @@
 package com.company;
+
 import java.util.ArrayList;
 
 public class Ride implements IRide {
     private IArea source;
     private IArea Destenation ;
-    private String start;
-    private String end;
-    private double cost;// el offer price that driver made + discount
-    public void setStart(String start) {
-        this.start = start;
-    }
-
-    public void setEnd(String end) {
-        this.end = end;
-    }
-
-    public String getStart() {
-        return start;
-    }
-
-    public String getEnd() {
-        return end;
-    }
 
     private ArrayList<Offer> offers=new ArrayList<>();
 
@@ -49,10 +32,10 @@ public class Ride implements IRide {
         this.Destenation = Destenation;
     }
 
-// may we put this fun in the constractor of the ride
+    // may we put this fun in the constractor of the ride
     public void checkSourceArea (IArea area){
         if(area instanceof Area){
-             area.notifyDriver(this);
+            area.notifyDriver(this);
         }
     }
 
@@ -70,5 +53,5 @@ public class Ride implements IRide {
         return "Ride [source=\n" + source + "\nDestenation=\n" + Destenation +"]";
     }
 
-    
+
 }
