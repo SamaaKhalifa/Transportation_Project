@@ -8,6 +8,18 @@ public class Area implements IArea {
     private ArrayList<IDriver> drivers = new ArrayList<>();
     private String name;
 
+    public boolean getAdminDiscount() {
+        return hasAdminDiscount;
+    }
+
+    private boolean hasAdminDiscount;
+
+    public void setHasAdminDiscount(boolean hasAdminDiscount) {
+        this.hasAdminDiscount = hasAdminDiscount;
+    }
+
+
+
     public void setName(String name) {
         this.name = name;
     }
@@ -28,7 +40,7 @@ public class Area implements IArea {
 
     @Override
     public void addDriver(com.company.Driver driver) {
-        drivers.add(driver);
+        if(!drivers.contains(driver)) drivers.add(driver);
 
     }
     @Override

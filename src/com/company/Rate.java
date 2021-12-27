@@ -22,11 +22,7 @@ public class Rate {
      public void addRate(int rate){
           rates.add(rate);
      }
-     public void getRates(){
-          for (int i = 0; i < rates.size(); i++) {
-               System.out.println("rate of user " + i + 1 + ": " + rates.get(i));
-          }
-     }
+
 
 
 }

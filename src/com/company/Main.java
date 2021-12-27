@@ -32,7 +32,7 @@ public class Main {
         ((admin)admin1).verify(driver1);
         ((admin)admin1).verify(driver2);
         System.out.println(saving.retrieveUsers());
-        System.out.println("suspending user");
+        System.out.println("After suspending user");
         ((admin)admin1).suspend( user2);
         ((admin)admin1).suspend(driver1);
         System.out.println(saving.retrieveUsers());
@@ -129,14 +129,19 @@ public class Main {
                 if (loginChoice == 1) {
 
                     Registration userRegister = new UserRegister();
+
                     if (userRegister.login(iuser) == false) continue;
                     while (true){
+
                     System.out.println("1:would like to Request a ride?\n" + "2:Exit");
                     int ch;
                     Scanner sc = new Scanner(System.in);
                     ch = sc.nextInt();
+
+
                     if (ch == 1) { //req ride
                         String source, destination;
+
                         Scanner charSc = new Scanner(System.in);
                         System.out.println("Enter the source area name:");
                         source = charSc.nextLine();
@@ -144,6 +149,7 @@ public class Main {
                         destination = charSc.nextLine();
                         IArea Source = saving.searchArea(source);
                         IArea Destination = saving.searchArea(destination);
+
                         if (Source == null) {
                             IArea Sour = new Area();
                             Sour.setName(source);
@@ -165,6 +171,7 @@ public class Main {
                         }
 
                         for (Ride r : saving.retrieveRide()) {
+
                             if (ride.getSource().equals(r.getSource())&&ride.getDestenation().equals(r.getDestenation())) { //la2etha
                                 if (!r.getOffers().isEmpty()) { // feh offer
                                     System.out.println("Offer");
@@ -176,6 +183,7 @@ public class Main {
                                    // System.out.println(offer.getDriver().toString());
 
                                 } else { //mfesh offer
+
                                     System.out.println("there is no offer for this ride, please try again later!");
                                 }
                                 break;
@@ -185,8 +193,10 @@ public class Main {
                         }
 
 
+
                     } else if (ch == 2) { //exit
                         break;
+
                     }
 
                 }}
@@ -212,7 +222,8 @@ public class Main {
                         ((Driver) iuser).AddNewFavArea((Area) ar);
                         ((Driver) iuser).getFavAreas();
 
-                    } else if (driverCh == 2) {// list all rides
+
+           } else if (driverCh == 2) {// list all rides
                         ((Driver) iuser).listRides();
                         System.out.println("Enter the no. of Ride you want to add an offer to it:");
                         Scanner sin = new Scanner(System.in);
@@ -221,6 +232,7 @@ public class Main {
                         ((Driver) iuser).makeOffer((Ride) ride);
 
                     } else if (driverCh == 3) {// list rating
+
 
                         for(int rate:((Driver) iuser).getRate().getRates()){
                             System.out.println(rate);
@@ -236,10 +248,7 @@ public class Main {
             } else {
                 System.out.println("thank you for using our amazing app!!!");
                 System.exit(0);
-
             }
-
         }
-
     }
 }
