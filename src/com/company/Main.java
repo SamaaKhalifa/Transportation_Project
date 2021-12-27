@@ -174,7 +174,7 @@ public class Main {
                                 if (ride.getSource().equals(r.getSource())&&ride.getDestenation().equals(r.getDestenation())) { //la2etha
                                     if (!r.getOffers().isEmpty()) { // feh offer
                                         System.out.println("Offer");
-                                        Offer offer=((User)iuser).chooseOffer(r.getOffers());
+                                        Offer offer = ((User)iuser).chooseOffer(r);
                                         System.out.println("Please rate the driver of the Ride from 1 to 5:");
                                         Scanner sin = new Scanner(System.in);
                                         int rate = sin.nextInt();

@@ -4,9 +4,22 @@ import java.util.ArrayList;
 
 public class Ride implements IRide {
     private IArea source;
+
     private IArea Destenation ;
 
+    private ArrayList <Event> events = new ArrayList<>();
+
     private ArrayList<Offer> offers=new ArrayList<>();
+
+    public void addEvent(Event event)
+    {
+        events.add(event);
+    }
+
+    public void removeEvent(Event event)
+    {
+        events.remove(event);
+    }
 
     public Ride(IArea source, IArea Destenation) {
         this.source = source;
@@ -17,16 +30,13 @@ public class Ride implements IRide {
         return source;
     }
 
-
     public void setSource(IArea source) {
         this.source = source;
     }
 
-
     public IArea getDestenation() {
         return Destenation;
     }
-
 
     public void setDestenation(IArea Destenation) {
         this.Destenation = Destenation;
@@ -44,14 +54,12 @@ public class Ride implements IRide {
         offers.add(newOffer);
     }
 
-
     public ArrayList<Offer> getOffers() {
         return offers;
     }
+
     @Override
     public String toString() {
         return "Ride [source=\n" + source + "\nDestenation=\n" + Destenation +"]";
     }
-
-
 }
