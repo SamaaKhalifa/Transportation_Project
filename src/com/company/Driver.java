@@ -16,6 +16,15 @@ public class Driver extends IUser implements IDriver {
     private String phoneNum;
     private String email;
     private boolean verified;
+    private double balance;
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
 
     public void setVerified(boolean verified) {
         this.verified = verified;
@@ -133,5 +142,14 @@ public class Driver extends IUser implements IDriver {
     @Override
     public void addRide(Ride ride){
         rides.add(ride);
+    }
+    public void startRide(Ride ride){
+        ride.setStart(true);
+        ride.setEnd(false);
+
+    }
+    public void endRide(Ride ride){
+        ride.setStart(false);
+        ride.setEnd(true);
     }
 }
