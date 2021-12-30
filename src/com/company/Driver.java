@@ -24,6 +24,7 @@ public class Driver extends IUser implements IDriver {
         return balance;
     }
 
+    private boolean busy;
     public void setVerified(boolean verified) {
         this.verified = verified;
     }
@@ -42,10 +43,8 @@ public class Driver extends IUser implements IDriver {
         this.phoneNum = phoneNum;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String email) { this.email = email; };
 
-    }
     public String getDrivingLicense() {
         return drivingLicense;
     }
@@ -53,6 +52,10 @@ public class Driver extends IUser implements IDriver {
     public String getNationalId() {
         return nationalId;
     }
+
+    public void setBusy(boolean b){ this.busy=true; }
+
+    public boolean getBusy(){ return busy;}
 
     public String getPhoneNum() {
         return phoneNum;

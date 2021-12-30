@@ -1,6 +1,5 @@
 package com.company;
 
-import java.sql.Driver;
 import java.util.ArrayList;
 
 public class Area implements IArea {
@@ -30,6 +29,9 @@ public class Area implements IArea {
         ArrayList<Offer>offers =new ArrayList<>();
         for (int i = 0; i < drivers.size(); i++) {
             drivers.get(i).addRide(ride);
+
+            if(!((Driver)drivers.get(i)).getBusy())
+                drivers.get(i).addRide(ride);
         }
 
 
