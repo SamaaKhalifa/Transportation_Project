@@ -1,6 +1,6 @@
 package com.company;
 
-public abstract class Discount extends IOffer{
+public class Discount implements IOffer{
    IOffer iOffer;
 
     public Discount(IOffer ioffer)
