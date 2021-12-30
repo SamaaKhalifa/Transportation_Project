@@ -28,7 +28,7 @@ public class Ride implements IRide {
 
     private ArrayList <Event> events = new ArrayList<>();
 
-    private ArrayList<Offer> offers=new ArrayList<>();
+    private ArrayList<IOffer> offers=new ArrayList<>();
 
     public void setStart(boolean start) {
         this.start = start;
@@ -89,12 +89,12 @@ public class Ride implements IRide {
         offers.add(newOffer);
     }
 
-    public ArrayList<Offer> getOffers() {
+    public ArrayList<IOffer> getOffers() {
         return offers;
     }
 
     @Override
     public String toString() {
-        return "Ride [source=\n" + source + "\nDestenation=\n" + Destenation +"]";
+        return "Ride [source=\n" + source+ "\nDestenation=\n" + Destenation +"]";
     }
 }

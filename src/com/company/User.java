@@ -13,7 +13,7 @@ public class User extends IUser {
 
     private String phoneNum;
     private String email;
-    private Offer offer;
+    private IOffer offer;
     private boolean verified;
     private String birthDate;
     public String getBirthDate() {
@@ -56,11 +56,11 @@ public class User extends IUser {
         return email;
     }
 
-    public Offer getOffer() {
+    public IOffer getOffer() {
         return offer;
     }
 
-    public void setOffer(Offer offer) {
+    public void setOffer(IOffer offer) {
         this.offer = offer;
     }
 
@@ -77,7 +77,7 @@ public class User extends IUser {
 
         for (int i = 0; i < ride.getOffers().size(); i++) {
             System.out.println((int)(i + 1) + ":" );
-            ride.getOffers().get(i).to_String();
+            ((Offer)ride.getOffers().get(i)).to_String();
         }
         Scanner cs = new Scanner(System.in);
         int choise = cs.nextInt();
@@ -95,10 +95,10 @@ public class User extends IUser {
             time2 = LocalTime.of(time.getHour(), time.getMinute()+30, time.getSecond());
 
         String Time2 = time2.toString();
-        Event event2 = new locationEvent(this , offer.getDriver(), Time2,"Captain arrived to user location");
+        Event event2 = new locationEvent(this , ((Offer)offer).getDriver(), Time2,"Captain arrived to user location");
         ride.addEvent(event2);
 
-        return ride.getOffers().get(choise-1);
+        return (Offer) ride.getOffers().get(choise-1);
     }
 
     @Override
