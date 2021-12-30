@@ -1,20 +1,17 @@
 package com.company;
 
-public class SourceEvent implements Event{
+public class locationEvent implements Event {
     private User user;
-
     private Driver driver;
-
-    private String name = "Captain arrived to user location ";
-
+    private String name;
     private String time;
 
-    public SourceEvent(User user , Driver driver , String time)
+    public locationEvent(User user , Driver driver , String time,String name)
     {
+        this.name=name;
         this.time = time;
         this.user = user;
         this.driver = driver;
-
     }
 
     @Override
@@ -23,5 +20,6 @@ public class SourceEvent implements Event{
                 "  Time : " + time +
                 "  UserName : "+ user.getUserName()+
                 "  CaptainName : " + driver.getUserName());
+
     }
 }
