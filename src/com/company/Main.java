@@ -13,7 +13,7 @@ public class Main {
         admin1.setUserName("Admin1");
         admin1.setPassword("12345");
         saving.addAdmin(admin1);
-        System.out.println("Admin section");
+       /* System.out.println("Admin section");
         IUser user1=new User("Nada","123","011","Nada@",null);
         IUser user2=new User("Yomna","345","010","Yomna@",null);
         IUser driver1=new Driver("Noura","456","000","5555","012","Noura@");
@@ -35,7 +35,7 @@ public class Main {
         System.out.println("After suspending user");
         ((admin)admin1).suspend( user2);
         ((admin)admin1).suspend(driver1);
-        System.out.println(saving.retrieveUsers());
+        System.out.println(saving.retrieveUsers());*/
 
 
         while (true) {

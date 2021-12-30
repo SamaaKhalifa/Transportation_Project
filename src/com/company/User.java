@@ -77,7 +77,7 @@ public class User extends IUser {
 
         for (int i = 0; i < ride.getOffers().size(); i++) {
             System.out.println((int)(i + 1) + ":" );
-            ((IOffer)ride.getOffers().get(i)).toString();
+            ((Offer)ride.getOffers().get(i)).to_String();
         }
         Scanner cs = new Scanner(System.in);
         int choise = cs.nextInt();

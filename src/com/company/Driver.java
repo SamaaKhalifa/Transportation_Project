@@ -28,11 +28,9 @@ public class Driver extends IUser implements IDriver {
     public void setVerified(boolean verified) {
         this.verified = verified;
     }
-
     public boolean getVerified(){
         return verified;
     }
-
     public void setDrivingLicense(String drivingLicense) {
         this.drivingLicense = drivingLicense;
     }
@@ -114,7 +112,7 @@ public class Driver extends IUser implements IDriver {
 
         ((Offer) newOffer).setDriver(this);
         ((Offer) newOffer).setPrice(price);
-
+        ride.addOffer((Offer) newOffer);
 
         LocalTime time = LocalTime.now();
         String Time = time.toString();
@@ -129,7 +127,7 @@ public class Driver extends IUser implements IDriver {
         System.out.println(newOffer.calculatePrice());
         System.out.println("//////////// 5 ////////////////////");
 
-        ride.addOffer((IOffer)newOffer);
+
     }
 
     @Override

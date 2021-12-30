@@ -1,16 +1,23 @@
 package com.company;
 
-public class Offer extends IOffer{
-
+public class Offer implements IOffer{
+    private double price ;
     private Driver driver ;
 
     public void setDriver (Driver driver) {
         this.driver=driver;
     }
 
+    public void setPrice (double price ) {
+        this.price=price;
+    }
+
+    public double getPrice() {
+        return price;
+    }
 
     public void to_String(){
-        System.out.println("Price before discount : "+ super.getPrice()+" Price after discount :"+  calculatePrice() + "  Driver info: " +driver.getUserName());
+        System.out.println("Price: "+price+ "  Price: "+ calculatePrice() +"\n"+"Driver info: "+ driver);
     }
 
     public Driver getDriver() {
@@ -19,7 +26,6 @@ public class Offer extends IOffer{
 
     @Override
     public double calculatePrice() {
-
-        return super.getPrice();
+        return price;
     }
 }
