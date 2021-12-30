@@ -232,7 +232,12 @@ public class Main {
                             Scanner sin = new Scanner(System.in);
                             int rideNo = sin.nextInt();
                             IRide ride = ((Driver) iuser).getRides().get(rideNo - 1);
-                            ((Driver) iuser).makeOffer((Ride) ride);
+
+                            Scanner input = new Scanner(System.in);
+                            System.out.println("Enter the Price you want in this offer");
+                            double price = input.nextDouble();
+
+                            ((Driver) iuser).makeOffer((Ride) ride ,price);
                             ((admin) admin1).showEvents((Ride)ride);
 
                         } else if (driverCh == 3) {// list rating

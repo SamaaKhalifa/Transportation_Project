@@ -17,6 +17,7 @@ public class PriceEvent implements Event{
         System.out.println("Name : " + name+
                 "  Time : " + time +
                 "  CaptainName : "+ offer.getDriver().getUserName()+
-                "  Price : " + offer.getPrice());
+                "  Price before discount : " + offer.getPrice()+
+                "  price after discount : "+ offer.calculatePrice());
     }
 }

@@ -1,10 +1,7 @@
 package com.company;
 
-
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Driver extends IUser implements IDriver {
 
@@ -30,9 +27,11 @@ public class Driver extends IUser implements IDriver {
     public void setVerified(boolean verified) {
         this.verified = verified;
     }
+
     public boolean getVerified(){
         return verified;
     }
+
     public void setDrivingLicense(String drivingLicense) {
         this.drivingLicense = drivingLicense;
     }
@@ -104,21 +103,30 @@ public class Driver extends IUser implements IDriver {
     }
 
     @Override
-    public void makeOffer(Ride ride) {
+    public void makeOffer(Ride ride , double price) {
         this.choosenRide = ride;
 
-        Offer newOffer = new Offer();
-        newOffer.setDriver(this);
-        Scanner input = new Scanner(System.in);
-        System.out.println("Enter the Price you want in this offer");
-        double price = input.nextDouble();
-        newOffer.setPrice(price);
-        ride.addOffer(newOffer);
+        IOffer newOffer = new Offer();
+
+
+        ((Offer) newOffer).setDriver(this);
+        ((Offer) newOffer).setPrice(price);
+
 
         LocalTime time = LocalTime.now();
         String Time = time.toString();
-        Event event = new PriceEvent(newOffer , Time);
+        Event event = new PriceEvent((Offer) newOffer, Time);
         choosenRide.addEvent(event);
+
+        newOffer = new TenPresentDiscount(newOffer);
+        //System.out.println(((Offer)newOffer).getDriver().getUserName());
+        System.out.println(newOffer.calculatePrice());
+        System.out.println("********** 10 ****************");
+        newOffer = new FivePresentDiscount(newOffer);
+        System.out.println(newOffer.calculatePrice());
+        System.out.println("//////////// 5 ////////////////////");
+
+        ride.addOffer((IOffer)newOffer);
     }
 
     @Override
