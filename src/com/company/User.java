@@ -1,5 +1,6 @@
 package com.company;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,6 +15,15 @@ public class User extends IUser {
     private String email;
     private Offer offer;
     private boolean verified;
+    private String birthDate;
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
     public String getPhoneNum() {
         return phoneNum;
     }
@@ -57,6 +67,8 @@ public class User extends IUser {
     public Ride requestRide(IArea s, IArea d) {
         Ride ride = new Ride(s, d);
         ride.checkSourceArea(s);
+        LocalDate date=LocalDate.now();
+        ride.setDate(date.toString());
         return ride;
     }
 
@@ -83,7 +95,7 @@ public class User extends IUser {
             time2 = LocalTime.of(time.getHour(), time.getMinute()+30, time.getSecond());
 
         String Time2 = time2.toString();
-        Event event2 = new SourceEvent(this , offer.getDriver(), Time2);
+        Event event2 = new locationEvent(this , offer.getDriver(), Time2,"Captain arrived to user location");
         ride.addEvent(event2);
 
         return ride.getOffers().get(choise-1);

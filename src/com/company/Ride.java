@@ -7,6 +7,16 @@ public class Ride implements IRide {
     private IArea source;
     private IArea Destenation ;
     private boolean start,end;
+    private String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
 
     public ArrayList<Event> getEvents() {
         return events;

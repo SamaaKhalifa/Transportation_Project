@@ -87,7 +87,7 @@ public class Driver extends IUser implements IDriver {
             time1 = LocalTime.of(time.getHour() + 1 , time.getMinute()+20 , time.getSecond());
 
         String Time = time1.toString();
-        Event event = new DestinationEvent(user ,this , Time);
+        Event event = new locationEvent(user ,this , Time,"Captain arrived to user destination");
         choosenRide.addEvent(event);
     }
 
@@ -128,9 +128,6 @@ public class Driver extends IUser implements IDriver {
     }
     @Override
     public ArrayList<Area> getFavAreas() {
-       /* for (int i = 0; i < favoriteAreas.size(); i++) {
-            System.out.println("Area " + i + 1 + ": " + favoriteAreas.get(i));
-        }*/
         return favoriteAreas;
     }
 
