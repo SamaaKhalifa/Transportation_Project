@@ -2,15 +2,17 @@ package com.company;
 
 public class TenPresentDiscount extends Discount {
 
-    IOffer iOffer;
-
     public TenPresentDiscount(IOffer ioffer) {
         super(ioffer);
-        this.iOffer = ioffer;
     }
-
+    @Override
     public double calculatePrice() {
-        //iOffer.setPrice(iOffer.calculatePrice() - (0.1 * iOffer.calculatePrice()));
-        return iOffer.calculatePrice() - (0.1 * iOffer.calculatePrice());
+        iOffer.calculatePrice();
+        getDis();
+        //iOffer.setPrice(iOffer.calculatePrice() - (0.05 * iOffer.calculatePrice()));
+        return iOffer.calculatePrice() - (0.05 * iOffer.calculatePrice());
+    }
+    public void getDis(){
+        System.out.println(iOffer.calculatePrice() - (0.05 * iOffer.calculatePrice()));
     }
 }

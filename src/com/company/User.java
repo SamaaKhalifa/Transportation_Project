@@ -76,8 +76,11 @@ public class User extends IUser {
         System.out.println("Choose one of these offers");
 
         for (int i = 0; i < ride.getOffers().size(); i++) {
-            System.out.println((int)(i + 1) + ":" );
-            ((Offer)ride.getOffers().get(i)).to_String();
+            System.out.println((i + 1) + ":" );
+            //((Offer)ride.getOffers().get(i)).to_String();
+            System.out.println("Price: "+ride.getOffers().get(i).calculatePrice());
+            System.out.println("Driver: "+((Offer)ride.getOffers().get(i)).getDriver());
+
         }
         Scanner cs = new Scanner(System.in);
         int choise = cs.nextInt();

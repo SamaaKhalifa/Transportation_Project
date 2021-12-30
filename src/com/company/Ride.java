@@ -85,7 +85,7 @@ public class Ride implements IRide {
     }
 
     @Override
-    public void addOffer(Offer newOffer) {
+    public void addOffer(IOffer newOffer) {
         offers.add(newOffer);
     }
 
