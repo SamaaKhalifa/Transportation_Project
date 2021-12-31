@@ -1,5 +1,7 @@
 package com.company;
 
+import java.time.LocalTime;
+
 public class AcceptanceEvent implements Event {
 
     private User user ;
@@ -8,10 +10,12 @@ public class AcceptanceEvent implements Event {
 
     private String time;
 
-    public AcceptanceEvent(User user , String time)
+    public AcceptanceEvent(User user )
     {
+        LocalTime time = LocalTime.now();
+        String Time = time.toString();
+        this.time = Time;
         this.user = user;
-        this.time = time;
     }
     @Override
     public void printEvent() {

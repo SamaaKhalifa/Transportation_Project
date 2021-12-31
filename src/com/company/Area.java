@@ -49,7 +49,7 @@ public class Area implements IArea {
 
     @Override
     public String toString() {
-        return "Area [drivers=\n" + drivers + "\nArea name=" + name + "]";
+        return "[ Area name =" + name + "]";
     }
 
 

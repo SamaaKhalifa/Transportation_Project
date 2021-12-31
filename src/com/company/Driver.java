@@ -23,6 +23,10 @@ public class Driver extends IUser implements IDriver {
     public double getBalance() {
         return balance;
     }
+    public double calcbalance(double price){
+        balance+=price;
+        return balance;
+    }
 
     public void setVerified(boolean verified) {
         this.verified = verified;
@@ -76,16 +80,10 @@ public class Driver extends IUser implements IDriver {
     {
         this.rate.addRate(rate);
 
-        LocalTime time = LocalTime.now();
-        LocalTime time1;
-        if(time.getMinute() + 20 > 60)
-            time1 = LocalTime.of(time.getHour() + 2 , time.getMinute(), time.getSecond());
-        else
-            time1 = LocalTime.of(time.getHour() + 1 , time.getMinute()+20 , time.getSecond());
+        calcbalance(user.getOffer().getdriverPrice());
+        endRide(user);
 
-        String Time = time1.toString();
-        Event event = new locationEvent(user ,this , Time,"Captain arrived to user destination");
-        choosenRide.addEvent(event);
+
     }
 
     public Driver() {
@@ -104,25 +102,28 @@ public class Driver extends IUser implements IDriver {
     public void makeOffer(Ride ride , double price) {
         this.choosenRide = ride;
 
-        IOffer newOffer = new Offer();
+         Offer newOffer = new Offer();
+
+         newOffer.setDriver(this);
+         newOffer.setdriverPrice(price);
+         ride.addOffer(newOffer);
 
 
-        ((Offer) newOffer).setDriver(this);
-        ((Offer) newOffer).setPrice(price);
-        ride.addOffer((Offer) newOffer);
 
-        LocalTime time = LocalTime.now();
-        String Time = time.toString();
-        Event event = new PriceEvent((Offer) newOffer, Time);
+
+        Event event = new PriceEvent( newOffer);
         choosenRide.addEvent(event);
 
-        newOffer = new TenPresentDiscount(newOffer);
+      /*  newOffer = new TenPresentDiscount(newOffer);
         //System.out.println(((Offer)newOffer).getDriver().getUserName());
         System.out.println(newOffer.calculatePrice());
         System.out.println("********** 10 ****************");
         newOffer = new FivePresentDiscount(newOffer);
         System.out.println(newOffer.calculatePrice());
-        System.out.println("//////////// 5 ////////////////////");
+        System.out.println("//////////// 5 ////////////////////");*/
+
+
+
 
 
     }
@@ -145,7 +146,7 @@ public class Driver extends IUser implements IDriver {
     }
 
     public String toString() {
-        return "Driver( username "+userName+" ,Avg rating "+getAvgRating()+ "  ,email "+email+"  ,Driving License" + getDrivingLicense() + "  ,National ID" + getNationalId()+")"+"\n";
+        return "Driver( username "+userName+"balance "+balance+" ,Avg rating "+getAvgRating()+ "  ,email "+email+"  ,Driving License" + getDrivingLicense() + "  ,National ID" + getNationalId()+")"+"\n";
     }
 
     @Override
@@ -162,13 +163,18 @@ public class Driver extends IUser implements IDriver {
         rides.add(ride);
     }
 
-    public void startRide(){
+    public void startRide(User user){
         choosenRide.setStart(true);
         choosenRide.setEnd(false);
+        Event event = new locationEvent(user , this,"Captain arrived to user location");
+        choosenRide.addEvent(event);
     }
 
-    public void endRide(){
+    public void endRide(User user){
+        Event event = new locationEvent(user ,this ,"Captain arrived to user destination");
+        choosenRide.addEvent(event);
         choosenRide.setStart(false);
         choosenRide.setEnd(true);
+
     }
 }
