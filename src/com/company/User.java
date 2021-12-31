@@ -64,11 +64,13 @@ public class User extends IUser {
         this.offer = offer;
     }
 
-    public Ride requestRide(IArea s, IArea d) {
+    public Ride requestRide(IArea s, IArea d,int noOfPass) {
         Ride ride = new Ride(s, d);
         ride.checkSourceArea(s);
+        RideRequest nwRequest=new RideRequest();
         LocalDate date=LocalDate.now();
-        ride.setDate(date.toString());
+        nwRequest.setDate(date.toString());
+        ride.addRequest(nwRequest);
         return ride;
     }
 

@@ -15,6 +15,23 @@ public class Driver extends IUser implements IDriver {
     private boolean verified;
     private double balance;
     private Ride choosenRide ;
+    public final int MAX_PASS=4;
+    private int noOfPass;
+    ArrayList<RideRequest> driverRequsets;
+    public void addDriverReq(RideRequest nwRequest){
+        driverRequsets.add(nwRequest);
+    }
+    public ArrayList<RideRequest> getDriverRequsets() {
+        return driverRequsets;
+    }
+
+    public int getNoOfPass() {
+        return noOfPass;
+    }
+
+    public void setNoOfPass(int noOfPass) {
+        this.noOfPass = noOfPass;
+    }
 
     public void setBalance(double balance) {
         this.balance = balance;
