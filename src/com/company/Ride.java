@@ -1,5 +1,6 @@
 package com.company;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Ride implements IRide {
@@ -14,7 +15,8 @@ public class Ride implements IRide {
     }
 
     public void setDate(String date) {
-        this.date = date;
+        LocalDate date1= LocalDate.now();
+        this.date = date1.toString();
     }
 
 

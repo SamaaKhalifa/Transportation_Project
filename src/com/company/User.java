@@ -97,6 +97,7 @@ public class User extends IUser {
         this.setChosenRide(ride);
 
         calcprice();
+        System.out.println("Price after discount : " + offer.getUserPrice());
 
         Event event1 = new AcceptanceEvent(this );
 
@@ -107,21 +108,16 @@ public class User extends IUser {
         return ride.getOffers().get(choise-1);
     }
     public void calcprice(){
-
         IOffer offer= new TenPresentDiscount(this.offer);
-        System.out.println(offer.calculatePrice());
-        offer=new FivePresentDiscount(offer);
-        System.out.println(offer.calculatePrice());
+        //System.out.println(offer.calculatePrice());
+        offer = new FivePresentDiscount(offer);
+        //System.out.println(offer.calculatePrice());
         this.offer.setUserPrice(offer.calculatePrice());
         System.out.println("-----------------user--------------------");
         System.out.println(this.offer.getUserPrice());
         System.out.println("------------------driver-------------------");
         System.out.println(this.offer.getdriverPrice());
-
-
-
     }
-
     @Override
     public String toString() {
         return "User(username= "+userName+" ,"+"email= " + email + ", offer=" + offer + ", phoneNum=" + phoneNum + ")"+"\n";

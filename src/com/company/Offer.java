@@ -27,7 +27,7 @@ public class Offer implements IOffer{
     }
 
     public void to_String(){
-        System.out.println("Price: "+driverPrice+ "  Price2: "+ UserPrice +"\n"+"Driver info: "+ driver);
+        System.out.println("Price before discount: "+driverPrice +'\n'+"Driver info: "+ driver);
     }
 
     public Driver getDriver() {
