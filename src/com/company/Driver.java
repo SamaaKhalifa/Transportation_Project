@@ -15,6 +15,23 @@ public class Driver extends IUser implements IDriver {
     private boolean verified;
     private double balance;
     private Ride choosenRide ;
+    public final int MAX_PASS=4;
+    private int noOfPass;
+    ArrayList<RideRequest> driverRequsets;
+    public void addDriverReq(RideRequest nwRequest){
+        driverRequsets.add(nwRequest);
+    }
+    public ArrayList<RideRequest> getDriverRequsets() {
+        return driverRequsets;
+    }
+
+    public int getNoOfPass() {
+        return noOfPass;
+    }
+
+    public void setNoOfPass(int noOfPass) {
+        this.noOfPass = noOfPass;
+    }
 
     public void setBalance(double balance) {
         this.balance = balance;
@@ -28,6 +45,7 @@ public class Driver extends IUser implements IDriver {
         return balance;
     }
 
+    private boolean busy;
     public void setVerified(boolean verified) {
         this.verified = verified;
     }
@@ -57,6 +75,10 @@ public class Driver extends IUser implements IDriver {
     public String getNationalId() {
         return nationalId;
     }
+
+    public void setBusy(boolean b){ this.busy=true; }
+
+    public boolean getBusy(){ return busy;}
 
     public String getPhoneNum() {
         return phoneNum;
@@ -109,6 +131,9 @@ public class Driver extends IUser implements IDriver {
          ride.addOffer(newOffer);
 
 
+        ((Offer) newOffer).setDriver(this);
+        ((Offer) newOffer).setPrice(price);
+        ride.addOffer((Offer) newOffer);
 
 
         Event event = new PriceEvent( newOffer);
