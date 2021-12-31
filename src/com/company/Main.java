@@ -149,6 +149,8 @@ public class Main {
                             destination = charSc.nextLine();
                             IArea Source = saving.searchArea(source);
                             IArea Destination = saving.searchArea(destination);
+                            System.out.println("Enter the num of passengers :");
+                            int numOfPassengers= sc.nextInt();
                             if (Source == null) {
                                 IArea Sour = new Area();
                                 Sour.setName(source);
@@ -161,7 +163,7 @@ public class Main {
                                 Destination = Dest;
                                 saving.save((Area) Dest);
                             }
-                            Ride ride = ((User) iuser).requestRide(Source, Destination);
+                            Ride ride = ((User) iuser).requestRide(Source, Destination,numOfPassengers);
                             saving.save(ride);
                             if (saving.retrieveRide().isEmpty()) {
                                 System.out.println("there is no offer for this ride, please try again later!");
