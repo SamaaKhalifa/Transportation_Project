@@ -128,20 +128,18 @@ public class Driver extends IUser implements IDriver {
             if(MAX_PASS-noOfPass<=r.getNoOfPass()) {
                 noOfPass+=r.getNoOfPass();
                 this.addDriverReq(r);
+                 newOffer.setDriver(this);
+                 newOffer.setdriverPrice(price);
+                 r.addOffer(newOffer);
+
+                ((Offer) newOffer).setDriver(this);
+                ((Offer) newOffer).setdriverPrice(price);
+                r.addOffer((Offer) newOffer);
+
+                Event event = new PriceEvent( newOffer);
+                r.addEvent(event);
             }
         }
-         newOffer.setDriver(this);
-         newOffer.setdriverPrice(price);
-         ride.addOffer(newOffer);
-
-
-        ((Offer) newOffer).setDriver(this);
-        ((Offer) newOffer).setdriverPrice(price);
-        ride.addOffer((Offer) newOffer);
-
-
-        Event event = new PriceEvent( newOffer);
-        choosenRide.addEvent(event);
 
       /*  newOffer = new TenPresentDiscount(newOffer);
         //System.out.println(((Offer)newOffer).getDriver().getUserName());
