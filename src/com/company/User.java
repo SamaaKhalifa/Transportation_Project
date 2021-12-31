@@ -97,6 +97,7 @@ public class User extends IUser {
         return ride;
     }
 
+
     public Offer chooseOffer(Ride ride) {
         System.out.println("Choose one of these offers");
 
@@ -128,7 +129,6 @@ public class User extends IUser {
         Event event1 = new AcceptanceEvent(this );
 
         ride.addEvent(event1);
-
         offer.getDriver().startRide(this);
         savedOffers.add(offer);
 

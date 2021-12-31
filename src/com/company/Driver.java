@@ -188,6 +188,15 @@ public class Driver extends IUser implements IDriver {
         rides.add(ride);
     }
 
+    public ArrayList<Ride> getRides() {
+        return rides;
+    }
+
+    public Rate getRate() {
+        return rate;
+    }
+}
+
     public void startRide(User user){
         choosenRide.setStart(true);
         choosenRide.setEnd(false);
@@ -202,4 +211,6 @@ public class Driver extends IUser implements IDriver {
         choosenRide.setEnd(true);
 
     }
+}
+
 }
