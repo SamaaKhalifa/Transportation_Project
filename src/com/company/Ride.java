@@ -1,6 +1,8 @@
 package com.company;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 
 public class Ride implements IRide {
@@ -10,6 +12,9 @@ public class Ride implements IRide {
     private boolean start,end;
     private String date;
 
+
+
+
     public String getDate() {
         return date;
     }
@@ -17,6 +22,14 @@ public class Ride implements IRide {
     public void setDate(String date) {
         LocalDate date1= LocalDate.now();
         this.date = date1.toString();
+    }
+    public boolean checkHoliday(){
+        LocalDate date= LocalDate.now();
+        DayOfWeek day = DayOfWeek.of(date.get(ChronoField.DAY_OF_WEEK));
+        if (day == DayOfWeek.FRIDAY || day == DayOfWeek.SATURDAY){
+           return true;
+        }
+        return false;
     }
 
 
@@ -63,16 +76,16 @@ public class Ride implements IRide {
         this.Destenation = Destenation;
     }
 
-    public IArea getSource() {
-        return source;
+    public Area getSource() {
+        return (Area) source;
     }
 
     public void setSource(IArea source) {
         this.source = source;
     }
 
-    public IArea getDestenation() {
-        return Destenation;
+    public Area getDestenation() {
+        return(Area) Destenation;
     }
 
     public void setDestenation(IArea Destenation) {

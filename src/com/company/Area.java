@@ -49,7 +49,7 @@ public class Area implements IArea {
 
     @Override
     public String toString() {
-        return "[ Area name =" + name + "]";
+        return name ;
     }
 
 
