@@ -6,20 +6,16 @@ public class Ride implements IRide {
 
     private IArea source;
     private IArea Destenation ;
-    private boolean start,end;
-    private String date;
+    ArrayList<RideRequest> requests;
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-
-    public ArrayList<Event> getEvents() {
+        public ArrayList<Event> getEvents() {
         return events;
+    }
+    public void addRequest(RideRequest nwRequest){
+            requests.add(nwRequest);
+    }
+    public ArrayList<RideRequest> getRequests() {
+        return requests;
     }
 
     public void setEvents(ArrayList<Event> events) {
@@ -30,21 +26,6 @@ public class Ride implements IRide {
 
     private ArrayList<IOffer> offers=new ArrayList<>();
 
-    public void setStart(boolean start) {
-        this.start = start;
-    }
-
-    public void setEnd(boolean end) {
-        this.end = end;
-    }
-
-    public boolean getStart() {
-        return start;
-    }
-
-    public boolean getEnd() {
-        return end;
-    }
 
     public void addEvent(Event event)
     {
