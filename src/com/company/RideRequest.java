@@ -7,13 +7,12 @@ class RideRequest{
     private boolean start,end;
     private String date;
     private int noOfPass;
+    private ArrayList<Offer> offers=new ArrayList<>();
+    private ArrayList <Event> events = new ArrayList<>();
 
     public int getNoOfPass() {
         return noOfPass;
     }
-
-    private ArrayList<Offer> offers=new ArrayList<>();
-    private ArrayList <Event> events = new ArrayList<>();
     public void addOffer(Offer newOffer) {
         offers.add(newOffer);
     }

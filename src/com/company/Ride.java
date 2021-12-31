@@ -9,7 +9,7 @@ public class Ride implements IRide {
 
     private IArea source;
     private IArea Destenation ;
-    ArrayList<RideRequest> requests;
+    private ArrayList<RideRequest> requests;
 
     public void addRequest(RideRequest nwRequest){
             requests.add(nwRequest);

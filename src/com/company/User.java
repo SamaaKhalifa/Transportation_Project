@@ -125,9 +125,7 @@ public class User extends IUser {
 
         calcprice();
         System.out.println("Price after discount : " + offer.getUserPrice());
-
         Event event1 = new AcceptanceEvent(this );
-
         ride.addEvent(event1);
         offer.getDriver().startRide(this);
         savedOffers.add(offer);
