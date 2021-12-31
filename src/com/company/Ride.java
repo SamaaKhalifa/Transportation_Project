@@ -10,8 +10,10 @@ public class Ride implements IRide {
     private IArea source;
     private IArea Destenation ;
     ArrayList<RideRequest> requests;
+    private ArrayList <Event> events = new ArrayList<>();
 
-        public ArrayList<Event> getEvents() {
+
+    public ArrayList<Event> getEvents() {
         return events;
     }
     public void addRequest(RideRequest nwRequest){
@@ -25,6 +27,7 @@ public class Ride implements IRide {
         }
         return false;
     }
+
     public ArrayList<RideRequest> getRequests() {
         return requests;
     }
@@ -32,10 +35,6 @@ public class Ride implements IRide {
     public void setEvents(ArrayList<Event> events) {
         this.events = events;
     }
-
-    private ArrayList <Event> events = new ArrayList<>();
-
-    private ArrayList<Offer> offers=new ArrayList<>();
 
 
     public void addEvent(Event event)
@@ -74,15 +73,6 @@ public class Ride implements IRide {
         if(area instanceof Area){
             area.notifyDriver(this);
         }
-    }
-
-    @Override
-    public void addOffer(Offer newOffer) {
-        offers.add(newOffer);
-    }
-
-    public ArrayList<Offer> getOffers() {
-        return offers;
     }
 
     @Override

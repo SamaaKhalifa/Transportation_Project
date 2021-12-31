@@ -66,7 +66,7 @@ public class Driver extends IUser implements IDriver {
 
     public void setEmail(String email) { this.email = email; };
 
-    }
+
     public String getDrivingLicense() {
         return drivingLicense;
     }
@@ -131,7 +131,7 @@ public class Driver extends IUser implements IDriver {
 
 
         ((Offer) newOffer).setDriver(this);
-        ((Offer) newOffer).setPrice(price);
+        ((Offer) newOffer).setdriverPrice(price);
         ride.addOffer((Offer) newOffer);
 
 

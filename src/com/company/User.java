@@ -107,6 +107,8 @@ public class User extends IUser {
             System.out.println("Driver: "+((Offer)ride.getOffers().get(i)).getDriver());
 
         }
+
+
         Scanner cs = new Scanner(System.in);
         for (int i = 0; i < ride.getOffers().size(); i++) {
             System.out.println((int)(i + 1) + ":" );
