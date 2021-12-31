@@ -15,14 +15,16 @@ public class PriceEvent implements Event{
         String Time = time.toString();
         this.time = Time;
         this.offer = offer;
+
     }
     @Override
     public void printEvent() {
         System.out.println("Name : " + name+
-                        "  Time : " + time +
-                        "  CaptainName : "+ offer.getDriver().getUserName()+
-                        "  driverPrice : " + offer.getdriverPrice()
+                "  Time : " + time +
+                "  CaptainName : "+ offer.getDriver().getUserName()+
+                "  driverPrice : " + offer.getdriverPrice()
                 //+" UserPrice : "+offer.getUserPrice()
         );
+
     }
 }

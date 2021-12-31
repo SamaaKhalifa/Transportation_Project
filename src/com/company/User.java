@@ -1,7 +1,9 @@
 package com.company;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -16,6 +18,17 @@ public class User extends IUser {
     private Offer offer;
     private boolean verified;
     private String birthDate;
+    private ArrayList<Offer>savedOffers= new ArrayList<>();
+
+    public IRide getChosenRide() {
+        return chosenRide;
+    }
+
+    public void setChosenRide(Ride chosenRide) {
+        this.chosenRide = chosenRide;
+    }
+
+    private Ride chosenRide;
     public String getBirthDate() {
         return birthDate;
     }
@@ -93,6 +106,7 @@ public class User extends IUser {
 
         Scanner cs = new Scanner(System.in);
         int choise = cs.nextInt();
+
         this.setOffer(ride.getOffers().get(choise - 1));
         this.setChosenRide(ride);
 
@@ -111,13 +125,14 @@ public class User extends IUser {
     public void calcprice(){
         IOffer offer = new Discount(this.offer);
         if (chosenRide.getDestenation().getAdminDiscount()==true){
-            offer= new TenPresentDiscount(this.offer);
+              offer= new TenPresentDiscount(this.offer);
         }
         if (birthDate==chosenRide.getDate()){
             offer= new TenPresentDiscount(this.offer);
         }
         /*if (chosenRide.getPassNum()==2){
             offer = new FivePresentDiscount(offer);
+
         }*/
         if (savedOffers.size()==0){
             offer= new TenPresentDiscount(this.offer);
@@ -134,7 +149,6 @@ public class User extends IUser {
         System.out.println("------------------driver-------------------");
         System.out.println(this.offer.getdriverPrice());
     }
-
     @Override
     public String toString() {
         return "User(username= "+userName+" ,"+"email= " + email + ", offer=" + offer + ", phoneNum=" + phoneNum + ")"+"\n";
