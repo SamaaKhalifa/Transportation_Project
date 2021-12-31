@@ -1,12 +1,20 @@
 package com.company;
 
-import java.sql.Driver;
 import java.util.ArrayList;
 
 public class Area implements IArea {
 
     private ArrayList<IDriver> drivers = new ArrayList<>();
     private String name;
+    private boolean hasAdminDiscount;
+
+    public boolean getAdminDiscount() {
+        return hasAdminDiscount;
+    }
+
+    public void setHasAdminDiscount(boolean hasAdminDiscount) {
+        this.hasAdminDiscount = hasAdminDiscount;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -20,7 +28,10 @@ public class Area implements IArea {
     public void notifyDriver(Ride ride) {
         ArrayList<Offer>offers =new ArrayList<>();
         for (int i = 0; i < drivers.size(); i++) {
-           drivers.get(i).addRide(ride);
+            drivers.get(i).addRide(ride);
+
+            if(!((Driver)drivers.get(i)).getBusy())
+                drivers.get(i).addRide(ride);
         }
 
 
@@ -28,7 +39,7 @@ public class Area implements IArea {
 
     @Override
     public void addDriver(com.company.Driver driver) {
-        drivers.add(driver);
+        if(!drivers.contains(driver)) drivers.add(driver);
 
     }
     @Override
@@ -40,13 +51,13 @@ public class Area implements IArea {
 
     @Override
     public String toString() {
-        return "Area [drivers=\n" + drivers + "\nArea name=" + name + "]";
+        return name ;
     }
 
 
-   
 
-    
 
-   
+
+
+
 }
