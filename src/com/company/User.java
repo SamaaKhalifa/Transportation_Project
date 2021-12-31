@@ -13,7 +13,7 @@ public class User extends IUser {
 
     private String phoneNum;
     private String email;
-    private IOffer offer;
+    private Offer offer;
     private boolean verified;
     private String birthDate;
     public String getBirthDate() {
@@ -56,11 +56,11 @@ public class User extends IUser {
         return email;
     }
 
-    public IOffer getOffer() {
+    public Offer getOffer() {
         return offer;
     }
 
-    public void setOffer(IOffer offer) {
+    public void setOffer(Offer offer) {
         this.offer = offer;
     }
 
@@ -85,25 +85,54 @@ public class User extends IUser {
 
         }
         Scanner cs = new Scanner(System.in);
+        for (int i = 0; i < ride.getOffers().size(); i++) {
+            System.out.println((int)(i + 1) + ":" );
+            (ride.getOffers().get(i)).to_String();
+
+        }
+
+        Scanner cs = new Scanner(System.in);
         int choise = cs.nextInt();
-
         this.setOffer(ride.getOffers().get(choise - 1));
+        this.setChosenRide(ride);
 
-        LocalTime time = LocalTime.now();
-        String Time = time.toString();
-        Event event1 = new AcceptanceEvent(this , Time);
+        calcprice();
+        System.out.println("Price after discount : " + offer.getUserPrice());
+
+        Event event1 = new AcceptanceEvent(this );
+
         ride.addEvent(event1);
-        LocalTime time2;
-        if(time.getMinute() + 30 > 60)
-             time2 = LocalTime.of(time.getHour()+1, time.getMinute(), time.getSecond());
-        else
-            time2 = LocalTime.of(time.getHour(), time.getMinute()+30, time.getSecond());
 
-        String Time2 = time2.toString();
-        Event event2 = new locationEvent(this , ((Offer)offer).getDriver(), Time2,"Captain arrived to user location");
-        ride.addEvent(event2);
+        offer.getDriver().startRide(this);
+        savedOffers.add(offer);
 
-        return (Offer) ride.getOffers().get(choise-1);
+        return ride.getOffers().get(choise-1);
+    }
+    public void calcprice(){
+        IOffer offer = new Discount(this.offer);
+        if (chosenRide.getDestenation().getAdminDiscount()==true){
+            offer= new TenPresentDiscount(this.offer);
+        }
+        if (birthDate==chosenRide.getDate()){
+            offer= new TenPresentDiscount(this.offer);
+        }
+        /*if (chosenRide.getPassNum()==2){
+            offer = new FivePresentDiscount(offer);
+        }*/
+        if (savedOffers.size()==0){
+            offer= new TenPresentDiscount(this.offer);
+        }
+        if (chosenRide.checkHoliday()==true){
+            offer = new FivePresentDiscount(offer);
+        }
+        //System.out.println(offer.calculatePrice());
+        // offer = new FivePresentDiscount(offer);
+        //System.out.println(offer.calculatePrice());
+        this.offer.setUserPrice(offer.calculatePrice());
+        System.out.println("-----------------user--------------------");
+        System.out.println(this.offer.getUserPrice());
+        System.out.println("------------------driver-------------------");
+        System.out.println(this.offer.getdriverPrice());
     }
 
     @Override

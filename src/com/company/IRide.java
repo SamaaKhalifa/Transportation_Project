@@ -4,6 +4,6 @@ import java.util.ArrayList;
 
 public interface IRide{
    void checkSourceArea (IArea area);
-   void addOffer(IOffer newOffer);
-   ArrayList<IOffer> getOffers();
+   void addOffer(Offer newOffer);
+   ArrayList<Offer> getOffers();
 }
