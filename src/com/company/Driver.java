@@ -124,7 +124,12 @@ public class Driver extends IUser implements IDriver {
         this.choosenRide = ride;
 
          Offer newOffer = new Offer();
-
+        for (RideRequest r:ride.getRequests()) {
+            if(MAX_PASS-noOfPass<=r.getNoOfPass()) {
+                noOfPass+=r.getNoOfPass();
+                this.addDriverReq(r);
+            }
+        }
          newOffer.setDriver(this);
          newOffer.setdriverPrice(price);
          ride.addOffer(newOffer);
@@ -186,14 +191,6 @@ public class Driver extends IUser implements IDriver {
     @Override
     public void addRide(Ride ride){
         rides.add(ride);
-    }
-
-    public ArrayList<Ride> getRides() {
-        return rides;
-    }
-
-    public Rate getRate() {
-        return rate;
     }
 }
 

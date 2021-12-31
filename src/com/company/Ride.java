@@ -10,12 +10,7 @@ public class Ride implements IRide {
     private IArea source;
     private IArea Destenation ;
     ArrayList<RideRequest> requests;
-    private ArrayList <Event> events = new ArrayList<>();
 
-
-    public ArrayList<Event> getEvents() {
-        return events;
-    }
     public void addRequest(RideRequest nwRequest){
             requests.add(nwRequest);
     }
@@ -30,21 +25,6 @@ public class Ride implements IRide {
 
     public ArrayList<RideRequest> getRequests() {
         return requests;
-    }
-
-    public void setEvents(ArrayList<Event> events) {
-        this.events = events;
-    }
-
-
-    public void addEvent(Event event)
-    {
-        events.add(event);
-    }
-
-    public void removeEvent(Event event)
-    {
-        events.remove(event);
     }
 
     public Ride(IArea source, IArea Destenation) {

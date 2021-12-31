@@ -6,12 +6,14 @@ import java.util.ArrayList;
 class RideRequest{
     private boolean start,end;
     private String date;
+    private int noOfPass;
+
+    public int getNoOfPass() {
+        return noOfPass;
+    }
+
     private ArrayList<Offer> offers=new ArrayList<>();
-
-
-
-
-
+    private ArrayList <Event> events = new ArrayList<>();
     public void addOffer(Offer newOffer) {
         offers.add(newOffer);
     }
@@ -26,7 +28,23 @@ class RideRequest{
         this.date = date1.toString();
     }
 
+    public void setEvents(ArrayList<Event> events) {
+        this.events = events;
+    }
 
+
+    public void addEvent(Event event)
+    {
+        events.add(event);
+    }
+
+    public void removeEvent(Event event)
+    {
+        events.remove(event);
+    }
+    public ArrayList<Event> getEvents() {
+        return events;
+    }
     public void setStart(boolean start) {
         this.start = start;
     }

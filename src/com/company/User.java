@@ -98,7 +98,7 @@ public class User extends IUser {
     }
 
 
-    public Offer chooseOffer(Ride ride) {
+    public Offer chooseOffer(RideRequest ride) {
         System.out.println("Choose one of these offers");
 
         for (int i = 0; i < ride.getOffers().size(); i++) {

@@ -131,39 +131,6 @@ public class Main {
                     Registration userRegister = new UserRegister();
 
                     if (userRegister.login(iuser) == false) continue;
-                   // while (true){
-                    System.out.println("1:would like to Request a ride?\n" + "2:Exit");
-                    int ch;
-                    Scanner sc = new Scanner(System.in);
-                    ch = sc.nextInt();
-                    if (ch == 1) { //req ride
-                        String source, destination;
-                        Scanner charSc = new Scanner(System.in);
-                        System.out.println("Enter the source area name:");
-                        source = charSc.nextLine();
-                        System.out.println("Enter the destination area name:");
-                        destination = charSc.nextLine();
-                        IArea Source = saving.searchArea(source);
-                        IArea Destination = saving.searchArea(destination);
-                        if (Source == null) {
-                            IArea Sour = new Area();
-                            Sour.setName(source);
-                            Source = Sour;
-                            saving.save((Area) Sour);
-                        }
-                        if (Destination == null) {
-                            IArea Dest = new Area();
-                            Dest.setName(destination);
-                            Destination = Dest;
-                            saving.save((Area) Dest);
-                        }
-                        Ride ride = ((User) iuser).requestRide(Source, Destination,1);
-                        saving.save(ride);
-                        if (saving.retrieveRide().isEmpty()) {
-                            System.out.println("there is no offer for this ride, please try again later!");
-                            System.out.println("2bl continue " + saving.retrieveRide());
-                            continue;
-                        }
 
                     while (true){
 
@@ -208,7 +175,7 @@ public class Main {
                             for (Ride r : saving.retrieveRide()) {
 
                                 if (ride.getSource().equals(r.getSource())&&ride.getDestenation().equals(r.getDestenation())) { //la2etha
-                                    if (!r.getOffers().isEmpty()) { // feh offer
+                                    if (!r.getRequests().isEmpty()) { // feh offer
                                         System.out.println("Offer");
                                         Offer offer = ((User)iuser).chooseOffer(r);
                                         System.out.println("****************************************************************");
