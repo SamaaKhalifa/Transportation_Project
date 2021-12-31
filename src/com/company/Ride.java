@@ -52,6 +52,7 @@ public class Ride implements IRide {
         this.source = source;
         this.Destenation = Destenation;
     }
+
     public Area getSource() {
         return (Area) source;
     }

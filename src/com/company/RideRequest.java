@@ -14,6 +14,7 @@ class RideRequest{
         this.date = date1.toString();
     }
 
+
     public void setStart(boolean start) {
         this.start = start;
     }
@@ -29,4 +30,5 @@ class RideRequest{
     public boolean getEnd() {
         return end;
     }
+
 }

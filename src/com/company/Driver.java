@@ -40,6 +40,10 @@ public class Driver extends IUser implements IDriver {
     public double getBalance() {
         return balance;
     }
+    public double calcbalance(double price){
+        balance+=price;
+        return balance;
+    }
 
     private boolean busy;
     public void setVerified(boolean verified) {
@@ -62,6 +66,7 @@ public class Driver extends IUser implements IDriver {
 
     public void setEmail(String email) { this.email = email; };
 
+    }
     public String getDrivingLicense() {
         return drivingLicense;
     }
@@ -98,6 +103,8 @@ public class Driver extends IUser implements IDriver {
 
         calcbalance(user.getOffer().getdriverPrice());
         endRide(user);
+
+
     }
 
     public Driver() {
@@ -116,11 +123,11 @@ public class Driver extends IUser implements IDriver {
     public void makeOffer(Ride ride , double price) {
         this.choosenRide = ride;
 
-        Offer newOffer = new Offer();
+         Offer newOffer = new Offer();
 
-        newOffer.setDriver(this);
-        newOffer.setdriverPrice(price);
-        ride.addOffer(newOffer);
+         newOffer.setDriver(this);
+         newOffer.setdriverPrice(price);
+         ride.addOffer(newOffer);
 
 
         ((Offer) newOffer).setDriver(this);
@@ -138,6 +145,9 @@ public class Driver extends IUser implements IDriver {
         newOffer = new FivePresentDiscount(newOffer);
         System.out.println(newOffer.calculatePrice());
         System.out.println("//////////// 5 ////////////////////");*/
+
+
+
 
 
     }

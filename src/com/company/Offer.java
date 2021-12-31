@@ -5,6 +5,15 @@ public class Offer implements IOffer{
     private double UserPrice ;
     private Driver driver ;
 
+    public double getUserPrice() {
+        return UserPrice;
+    }
+
+    public void setUserPrice(double userPrice) {
+        UserPrice = userPrice;
+    }
+
+
     public void setDriver (Driver driver) {
         this.driver=driver;
     }
