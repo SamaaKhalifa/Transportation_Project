@@ -37,21 +37,6 @@ public class Ride implements IRide {
 
     private ArrayList<Offer> offers=new ArrayList<>();
 
-    public void setStart(boolean start) {
-        this.start = start;
-    }
-
-    public void setEnd(boolean end) {
-        this.end = end;
-    }
-
-    public boolean getStart() {
-        return start;
-    }
-
-    public boolean getEnd() {
-        return end;
-    }
 
     public void addEvent(Event event)
     {

@@ -17,13 +17,22 @@ public class User extends IUser {
     private String email;
     private Offer offer;
     private boolean verified;
+    private RideRequest userRequest;
     private String birthDate;
     private ArrayList<Offer>savedOffers= new ArrayList<>();
+
+
+    public User(String userName, String password, String phoneNum, String email, Offer offer) {
+        super(userName, password);
+        this.phoneNum = phoneNum;
+        this.email = email;
+        this.offer = offer;
+
+    }
 
     public IRide getChosenRide() {
         return chosenRide;
     }
-
     public void setChosenRide(Ride chosenRide) {
         this.chosenRide = chosenRide;
     }
@@ -41,13 +50,6 @@ public class User extends IUser {
         return phoneNum;
     }
 
-    public User(String userName, String password, String phoneNum, String email, Offer offer) {
-        super(userName, password);
-        this.phoneNum = phoneNum;
-        this.email = email;
-        this.offer = offer;
-
-    }
 
     public void setVerified(boolean verified) {
         this.verified = verified;
@@ -77,7 +79,15 @@ public class User extends IUser {
         this.offer = offer;
     }
 
-    public Ride requestRide(IArea s, IArea d,int noOfPass) {
+    public RideRequest getUserRequest() {
+        return userRequest;
+    }
+
+    public void setUserRequest(RideRequest userRequest) {
+        this.userRequest = userRequest;
+    }
+
+    public Ride requestRide(IArea s, IArea d, int noOfPass) {
         Ride ride = new Ride(s, d);
         ride.checkSourceArea(s);
         RideRequest nwRequest=new RideRequest();
@@ -104,7 +114,7 @@ public class User extends IUser {
 
         }
 
-        Scanner cs = new Scanner(System.in);
+
         int choise = cs.nextInt();
 
         this.setOffer(ride.getOffers().get(choise - 1));
@@ -127,7 +137,7 @@ public class User extends IUser {
         if (chosenRide.getDestenation().getAdminDiscount()==true){
               offer= new TenPresentDiscount(this.offer);
         }
-        if (birthDate==chosenRide.getDate()){
+        if (birthDate==userRequest.getDate()){
             offer= new TenPresentDiscount(this.offer);
         }
         /*if (chosenRide.getPassNum()==2){
