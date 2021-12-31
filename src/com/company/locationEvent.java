@@ -1,15 +1,19 @@
 package com.company;
 
+import java.time.LocalTime;
+
 public class locationEvent implements Event {
     private User user;
     private Driver driver;
     private String name;
     private String time;
 
-    public locationEvent(User user , Driver driver , String time,String name)
+    public locationEvent(User user , Driver driver ,String name)
     {
         this.name=name;
-        this.time = time;
+        LocalTime time = LocalTime.now();
+        String Time = time.toString();
+        this.time = Time;
         this.user = user;
         this.driver = driver;
     }

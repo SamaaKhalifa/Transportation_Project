@@ -1,5 +1,7 @@
 package com.company;
 
+import java.time.LocalDate;
+
 class RideRequest{
     private boolean start,end;
     private String date;
@@ -8,7 +10,8 @@ class RideRequest{
     }
 
     public void setDate(String date) {
-        this.date = date;
+        LocalDate date1= LocalDate.now();
+        this.date = date1.toString();
     }
 
     public void setStart(boolean start) {
