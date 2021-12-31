@@ -9,31 +9,31 @@ public class Ride implements IRide {
     private boolean start,end;
     private String date;
 
-    private ArrayList <Event> events = new ArrayList<>();
-    private ArrayList<IOffer> offers=new ArrayList<>();
-
-    public Ride(IArea source, IArea Destenation) {
-        this.source = source;
-        this.Destenation = Destenation;
-    }
-
     public String getDate() {
         return date;
     }
+
     public void setDate(String date) {
         this.date = date;
     }
 
+
     public ArrayList<Event> getEvents() {
         return events;
     }
+
     public void setEvents(ArrayList<Event> events) {
         this.events = events;
     }
 
+    private ArrayList <Event> events = new ArrayList<>();
+
+    private ArrayList<IOffer> offers=new ArrayList<>();
+
     public void setStart(boolean start) {
         this.start = start;
     }
+
     public void setEnd(boolean end) {
         this.end = end;
     }
@@ -56,10 +56,15 @@ public class Ride implements IRide {
         events.remove(event);
     }
 
+    public Ride(IArea source, IArea Destenation) {
+        this.source = source;
+        this.Destenation = Destenation;
+    }
 
     public IArea getSource() {
         return source;
     }
+
     public void setSource(IArea source) {
         this.source = source;
     }
@@ -67,6 +72,7 @@ public class Ride implements IRide {
     public IArea getDestenation() {
         return Destenation;
     }
+
     public void setDestenation(IArea Destenation) {
         this.Destenation = Destenation;
     }

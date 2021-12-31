@@ -109,6 +109,7 @@ public class Driver extends IUser implements IDriver {
 
         IOffer newOffer = new Offer();
 
+
         ((Offer) newOffer).setDriver(this);
         ((Offer) newOffer).setPrice(price);
         ride.addOffer((Offer) newOffer);
