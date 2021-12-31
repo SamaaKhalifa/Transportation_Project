@@ -14,12 +14,26 @@ public class Driver extends IUser implements IDriver {
     private String email;
     private boolean verified;
     private double balance;
+    private boolean busy;
     private Ride choosenRide ;
     public final int MAX_PASS=4;
     private int noOfPass;
-    ArrayList<RideRequest> driverRequsets;
+    ArrayList<RideRequest> driverRequsets=new ArrayList<>();
     public void addDriverReq(RideRequest nwRequest){
         driverRequsets.add(nwRequest);
+    }
+    public Driver() {
+        super();
+        noOfPass=0;
+        balance=0;
+    }
+    public Driver(String userName, String password, String drivingLicense,
+                  String nationalId, String phoneNum, String email) {
+        super(userName, password);
+        this.drivingLicense = drivingLicense;
+        this.nationalId = nationalId;
+        this.phoneNum = phoneNum;
+        this.email = email;
     }
     public ArrayList<RideRequest> getDriverRequsets() {
         return driverRequsets;
@@ -45,7 +59,6 @@ public class Driver extends IUser implements IDriver {
         return balance;
     }
 
-    private boolean busy;
     public void setVerified(boolean verified) {
         this.verified = verified;
     }
@@ -107,51 +120,29 @@ public class Driver extends IUser implements IDriver {
 
     }
 
-    public Driver() {
-        super();
-    }
 
-    public Driver(String userName, String password, String drivingLicense, String nationalId, String phoneNum, String email) {
-        super(userName, password);
-        this.drivingLicense = drivingLicense;
-        this.nationalId = nationalId;
-        this.phoneNum = phoneNum;
-        this.email = email;
-    }
 
     @Override
     public void makeOffer(Ride ride , double price) {
-        this.choosenRide = ride;
-
-         Offer newOffer = new Offer();
+        choosenRide = ride;
+        Offer newOffer = new Offer();
         for (RideRequest r:ride.getRequests()) {
-            if(MAX_PASS-noOfPass<=r.getNoOfPass()) {
+            System.out.println("less noOfPass: "+r.getNoOfPass());
+            if(MAX_PASS>=r.getNoOfPass()+noOfPass) {
                 noOfPass+=r.getNoOfPass();
-                this.addDriverReq(r);
                  newOffer.setDriver(this);
                  newOffer.setdriverPrice(price);
+                 System.out.println("newOffer data:"+newOffer);
+                 newOffer.to_String();
                  r.addOffer(newOffer);
-
-                ((Offer) newOffer).setDriver(this);
-                ((Offer) newOffer).setdriverPrice(price);
-                r.addOffer((Offer) newOffer);
-
+                System.out.println("request offer: "+r.getOffers().toString());
                 Event event = new PriceEvent( newOffer);
                 r.addEvent(event);
+                 addDriverReq(r);
             }
         }
-
-      /*  newOffer = new TenPresentDiscount(newOffer);
-        //System.out.println(((Offer)newOffer).getDriver().getUserName());
-        System.out.println(newOffer.calculatePrice());
-        System.out.println("********** 10 ****************");
-        newOffer = new FivePresentDiscount(newOffer);
-        System.out.println(newOffer.calculatePrice());
-        System.out.println("//////////// 5 ////////////////////");*/
-
-
-
-
+        System.out.println("Driver make offer ride req: ");
+        System.out.println(ride.getRequests());
 
     }
 
@@ -168,7 +159,7 @@ public class Driver extends IUser implements IDriver {
     @Override
     public void listRides() {
         for (int i = 0; i < rides.size(); i++) {
-            System.out.println("ride " + (int)(i + 1) + ": " + rides.get(i));
+            System.out.println("ride " + (i + 1) + ": " + rides.get(i));
         }
     }
 
@@ -190,22 +181,21 @@ public class Driver extends IUser implements IDriver {
     public void addRide(Ride ride){
         rides.add(ride);
     }
-}
+
 
     public void startRide(User user){
-        choosenRide.setStart(true);
-        choosenRide.setEnd(false);
+        user.getUserRequest().setStart(true);
+        user.getUserRequest().setEnd(false);
         Event event = new locationEvent(user , this,"Captain arrived to user location");
-        choosenRide.addEvent(event);
+        user.getUserRequest().addEvent(event);
     }
 
     public void endRide(User user){
         Event event = new locationEvent(user ,this ,"Captain arrived to user destination");
-        choosenRide.addEvent(event);
-        choosenRide.setStart(false);
-        choosenRide.setEnd(true);
+        user.getUserRequest().addEvent(event);
+        user.getUserRequest().setStart(false);
+        user.getUserRequest().setEnd(true);
 
     }
 }
 
-}

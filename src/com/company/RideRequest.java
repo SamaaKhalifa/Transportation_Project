@@ -10,6 +10,10 @@ class RideRequest{
     private ArrayList<Offer> offers=new ArrayList<>();
     private ArrayList <Event> events = new ArrayList<>();
 
+    public void setNoOfPass(int noOfPass) {
+        this.noOfPass = noOfPass;
+    }
+
     public int getNoOfPass() {
         return noOfPass;
     }
@@ -26,17 +30,10 @@ class RideRequest{
         LocalDate date1= LocalDate.now();
         this.date = date1.toString();
     }
-
-    public void setEvents(ArrayList<Event> events) {
-        this.events = events;
-    }
-
-
     public void addEvent(Event event)
     {
         events.add(event);
     }
-
     public void removeEvent(Event event)
     {
         events.remove(event);
@@ -54,6 +51,15 @@ class RideRequest{
 
     public boolean getStart() {
         return start;
+    }
+
+    @Override
+    public String toString() {
+        return "RideRequest{" +
+                "noOfPass=" + noOfPass +
+                ", offers=" + offers.toString() +
+                ", events=" + events.toString() +
+                '}';
     }
 
     public boolean getEnd() {

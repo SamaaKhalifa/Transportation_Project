@@ -25,5 +25,7 @@ public interface ISaving {
 
     IUser searchAdmin(String userName, String Password);
 
+    IRide searchRide(Area source, Area destination);
+
     IArea searchArea(String name);
 }

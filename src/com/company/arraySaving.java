@@ -75,7 +75,17 @@ public class arraySaving implements ISaving {
         }
         return null;
     }
-
+    @Override
+    public IRide searchRide(Area source, Area destination) {
+        for (IRide ride : rides) {
+            if (source.equals(((Ride)ride).getSource()) && destination.equals(((Ride)ride).getDestenation())) {
+                return ride;
+            }
+        }
+        IRide ride = new Ride(source,destination);
+        save((Ride) ride);
+        return ride;
+    }
     @Override
     public IArea searchArea(String name) {
         for (IArea area : this.retrieveArea()) {
@@ -83,8 +93,10 @@ public class arraySaving implements ISaving {
                 return area;
             }
         }
-        //this.save(area);
-        return null;
+        IArea nwArea = new Area();
+        nwArea.setName(name);
+        save((Area) nwArea);
+        return nwArea;
     }
 
     @Override

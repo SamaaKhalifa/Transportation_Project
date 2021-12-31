@@ -132,7 +132,7 @@ public class Main {
 
                     if (userRegister.login(iuser) == false) continue;
 
-                    while (true){
+                    while (true) {
 
                         System.out.println("1:would like to Request a ride?\n" + "2:Exit");
                         int ch;
@@ -151,53 +151,31 @@ public class Main {
                             IArea Source = saving.searchArea(source);
                             IArea Destination = saving.searchArea(destination);
                             System.out.println("Enter the num of passengers :");
-                            int numOfPassengers= sc.nextInt();
-                            if (Source == null) {
-                                IArea Sour = new Area();
-                                Sour.setName(source);
-                                Source = Sour;
-                                saving.save((Area) Sour);
-                            }
-                            if (Destination == null) {
-                                IArea Dest = new Area();
-                                Dest.setName(destination);
-                                Destination = Dest;
-                                saving.save((Area) Dest);
-                            }
-                            Ride ride = ((User) iuser).requestRide(Source, Destination,numOfPassengers);
-                            saving.save(ride);
+                            int numOfPassengers = sc.nextInt();
+                            IRide Ride=saving.searchRide((Area) Source,(Area) Destination);
+                            Ride ride = ((User) iuser).requestRide(Ride ,numOfPassengers);
                             if (saving.retrieveRide().isEmpty()) {
                                 System.out.println("there is no offer for this ride, please try again later!");
                                 System.out.println("2bl continue " + saving.retrieveRide());
                                 continue;
                             }
+                            RideRequest userRequest=((User) iuser).getUserRequest();
+                            if (!userRequest.getOffers().isEmpty()) { // feh offer
+                                System.out.println("Offer");
+                                Offer offer = ((User) iuser).chooseOffer(ride);
+                                System.out.println("****************************************************************");
+                                ((admin) admin1).showEvents(userRequest);
+                                System.out.println("Please rate the driver of the Ride from 1 to 5:");
+                                Scanner sin = new Scanner(System.in);
+                                int rate = sin.nextInt();
+                                offer.getDriver().rateMe(rate, ((User) iuser));
+                                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                                ((admin) admin1).showEvents(userRequest);
 
-                            for (Ride r : saving.retrieveRide()) {
+                            } else { //mfesh offer
 
-                                if (ride.getSource().equals(r.getSource())&&ride.getDestenation().equals(r.getDestenation())) { //la2etha
-                                    if (!r.getRequests().isEmpty()) { // feh offer
-                                        System.out.println("Offer");
-                                        Offer offer = ((User)iuser).chooseOffer(r);
-                                        System.out.println("****************************************************************");
-                                        ((admin) admin1).showEvents(r);
-                                        System.out.println("Please rate the driver of the Ride from 1 to 5:");
-                                        Scanner sin = new Scanner(System.in);
-                                        int rate = sin.nextInt();
-                                        offer.getDriver().rateMe(rate ,((User)iuser));
-                                        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-                                        ((admin) admin1).showEvents(r);
-                                        // System.out.println(offer.getDriver().toString());
-
-                                    } else { //mfesh offer
-
-                                        System.out.println("there is no offer for this ride, please try again later!");
-                                    }
-                                    break;
-
-                                }
-
+                                System.out.println("there is no offer for this ride, please try again later!");
                             }
-
 
 
                         } else if (ch == 2) { //exit
@@ -206,12 +184,13 @@ public class Main {
                         }
 
 
-                    }}
+                    }
+                }
                 // Driver login.
                 else if (loginChoice == 2) {
                     Registration driverRegister = new DriverRegister();
                     if (driverRegister.login(iuser) == false) continue;
-                    while (true){
+                    while (true) {
                         System.out.println("1:Add Area\n2:List all rides\n3:list user rating\n4:Exit");
                         Scanner sc = new Scanner(System.in);
                         int driverCh = sc.nextInt();
@@ -241,20 +220,21 @@ public class Main {
                             System.out.println("Enter the Price you want in this offer");
                             double price = input.nextDouble();
 
-                            ((Driver) iuser).makeOffer((Ride) ride ,price);
-                            ((admin) admin1).showEvents((Ride)ride);
+                            ((Driver) iuser).makeOffer((Ride) ride, price);
+                            //((admin) admin1).showEvents((Ride) ride);
 
                         } else if (driverCh == 3) {// list rating
 
 
-                            for(int rate:((Driver) iuser).getRate().getRates()){
+                            for (int rate : ((Driver) iuser).getRate().getRates()) {
                                 System.out.println(rate);
                             }
-                        }else{
+                        } else {
                             break;
                         }
 
-                    }} else {
+                    }
+                } else {
                     System.out.println("invalid input!");
                 }
 
