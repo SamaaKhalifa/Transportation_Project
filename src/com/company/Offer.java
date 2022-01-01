@@ -34,7 +34,7 @@ public class Offer implements IOffer{
         return driver;
     }
 
-    @Override
+    //@Override
     public double calculatePrice() {
         return driverPrice;
     }

@@ -13,12 +13,16 @@ public class admin extends IUser {
         }
     }
 
-    public void showEvents(Ride ride)
+    public void showEvents(RideRequest req)
     {
-        for(Event event : ride.getEvents())
-        {
-            event.printEvent();
-        }
+
+       // for (RideRequest req:ride.getRequests()) {
+            for(int j=0;j<req.getEvents().size();j++){
+                req.getEvents().get(j).printEvent();
+            }
+
+        //}
+
     }
 
     public void suspend(IUser user) {

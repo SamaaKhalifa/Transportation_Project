@@ -15,6 +15,7 @@ public class PriceEvent implements Event{
         String Time = time.toString();
         this.time = Time;
         this.offer = offer;
+
     }
     @Override
     public void printEvent() {
@@ -24,5 +25,6 @@ public class PriceEvent implements Event{
                 "  driverPrice : " + offer.getdriverPrice()
                 //+" UserPrice : "+offer.getUserPrice()
         );
+
     }
 }

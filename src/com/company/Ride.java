@@ -9,66 +9,22 @@ public class Ride implements IRide {
 
     private IArea source;
     private IArea Destenation ;
-    private boolean start,end;
-    private String date;
+    private ArrayList<RideRequest> requests=new ArrayList<RideRequest>();
 
-
-
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        LocalDate date1= LocalDate.now();
-        this.date = date1.toString();
+    public void addRequest(RideRequest nwRequest){
+            requests.add(nwRequest);
     }
     public boolean checkHoliday(){
         LocalDate date= LocalDate.now();
         DayOfWeek day = DayOfWeek.of(date.get(ChronoField.DAY_OF_WEEK));
         if (day == DayOfWeek.FRIDAY || day == DayOfWeek.SATURDAY){
-           return true;
+            return true;
         }
         return false;
     }
 
-
-    public ArrayList<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(ArrayList<Event> events) {
-        this.events = events;
-    }
-
-    private ArrayList <Event> events = new ArrayList<>();
-
-    private ArrayList<Offer> offers=new ArrayList<>();
-
-    public void setStart(boolean start) {
-        this.start = start;
-    }
-
-    public void setEnd(boolean end) {
-        this.end = end;
-    }
-
-    public boolean getStart() {
-        return start;
-    }
-
-    public boolean getEnd() {
-        return end;
-    }
-
-    public void addEvent(Event event)
-    {
-        events.add(event);
-    }
-
-    public void removeEvent(Event event)
-    {
-        events.remove(event);
+    public ArrayList<RideRequest> getRequests() {
+        return requests;
     }
 
     public Ride(IArea source, IArea Destenation) {
@@ -100,16 +56,9 @@ public class Ride implements IRide {
     }
 
     @Override
-    public void addOffer(Offer newOffer) {
-        offers.add(newOffer);
-    }
-
-    public ArrayList<Offer> getOffers() {
-        return offers;
-    }
-
-    @Override
     public String toString() {
         return "Ride [source=\n" + source+ "\nDestenation=\n" + Destenation +"]";
     }
+
+
 }

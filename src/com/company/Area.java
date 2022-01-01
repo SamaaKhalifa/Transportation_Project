@@ -1,6 +1,5 @@
 package com.company;
 
-import java.sql.Driver;
 import java.util.ArrayList;
 
 public class Area implements IArea {
@@ -27,9 +26,9 @@ public class Area implements IArea {
 
     @Override
     public void notifyDriver(Ride ride) {
-        ArrayList<Offer>offers =new ArrayList<>();
         for (int i = 0; i < drivers.size(); i++) {
-            drivers.get(i).addRide(ride);
+            if(((Driver)drivers.get(i)).MAX_PASS>((Driver)drivers.get(i)).getNoOfPass())
+                drivers.get(i).addRide(ride);
         }
 
 
@@ -43,7 +42,6 @@ public class Area implements IArea {
     @Override
     public void removeDriver(com.company.Driver driver) {
         drivers.remove(driver);
-        //drivers.remove(new Driver (driver));
 
     }
 

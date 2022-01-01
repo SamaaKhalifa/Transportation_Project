@@ -14,7 +14,38 @@ public class Driver extends IUser implements IDriver {
     private String email;
     private boolean verified;
     private double balance;
+    private boolean busy;
     private Ride choosenRide ;
+    public final int MAX_PASS=4;
+    private int noOfPass;
+    ArrayList<RideRequest> driverRequsets=new ArrayList<>();
+    public void addDriverReq(RideRequest nwRequest){
+        driverRequsets.add(nwRequest);
+    }
+    public Driver() {
+        super();
+        noOfPass=0;
+        balance=0;
+    }
+    public Driver(String userName, String password, String drivingLicense,
+                  String nationalId, String phoneNum, String email) {
+        super(userName, password);
+        this.drivingLicense = drivingLicense;
+        this.nationalId = nationalId;
+        this.phoneNum = phoneNum;
+        this.email = email;
+    }
+    public ArrayList<RideRequest> getDriverRequsets() {
+        return driverRequsets;
+    }
+
+    public int getNoOfPass() {
+        return noOfPass;
+    }
+
+    public void setNoOfPass(int noOfPass) {
+        this.noOfPass = noOfPass;
+    }
 
     public void setBalance(double balance) {
         this.balance = balance;
@@ -46,10 +77,9 @@ public class Driver extends IUser implements IDriver {
         this.phoneNum = phoneNum;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String email) { this.email = email; };
 
-    }
+
     public String getDrivingLicense() {
         return drivingLicense;
     }
@@ -57,6 +87,10 @@ public class Driver extends IUser implements IDriver {
     public String getNationalId() {
         return nationalId;
     }
+
+    public void setBusy(boolean b){ this.busy=true; }
+
+    public boolean getBusy(){ return busy;}
 
     public String getPhoneNum() {
         return phoneNum;
@@ -86,45 +120,29 @@ public class Driver extends IUser implements IDriver {
 
     }
 
-    public Driver() {
-        super();
-    }
 
-    public Driver(String userName, String password, String drivingLicense, String nationalId, String phoneNum, String email) {
-        super(userName, password);
-        this.drivingLicense = drivingLicense;
-        this.nationalId = nationalId;
-        this.phoneNum = phoneNum;
-        this.email = email;
-    }
 
     @Override
     public void makeOffer(Ride ride , double price) {
-        this.choosenRide = ride;
-
-         Offer newOffer = new Offer();
-
-         newOffer.setDriver(this);
-         newOffer.setdriverPrice(price);
-         ride.addOffer(newOffer);
-
-
-
-
-        Event event = new PriceEvent( newOffer);
-        choosenRide.addEvent(event);
-
-      /*  newOffer = new TenPresentDiscount(newOffer);
-        //System.out.println(((Offer)newOffer).getDriver().getUserName());
-        System.out.println(newOffer.calculatePrice());
-        System.out.println("********** 10 ****************");
-        newOffer = new FivePresentDiscount(newOffer);
-        System.out.println(newOffer.calculatePrice());
-        System.out.println("//////////// 5 ////////////////////");*/
-
-
-
-
+        choosenRide = ride;
+        Offer newOffer = new Offer();
+        for (RideRequest r:ride.getRequests()) {
+            System.out.println("less noOfPass: "+r.getNoOfPass());
+            if(MAX_PASS>=r.getNoOfPass()+noOfPass) {
+                noOfPass+=r.getNoOfPass();
+                 newOffer.setDriver(this);
+                 newOffer.setdriverPrice(price);
+                 System.out.println("newOffer data:"+newOffer);
+                 newOffer.to_String();
+                 r.addOffer(newOffer);
+                System.out.println("request offer: "+r.getOffers().toString());
+                Event event = new PriceEvent( newOffer);
+                r.addEvent(event);
+                 addDriverReq(r);
+            }
+        }
+        System.out.println("Driver make offer ride req: ");
+        System.out.println(ride.getRequests());
 
     }
 
@@ -141,12 +159,13 @@ public class Driver extends IUser implements IDriver {
     @Override
     public void listRides() {
         for (int i = 0; i < rides.size(); i++) {
-            System.out.println("ride " + (int)(i + 1) + ": " + rides.get(i));
+            System.out.println("ride " + (i + 1) + ": " + rides.get(i));
         }
     }
 
     public String toString() {
-        return "Driver( username "+userName+"balance "+balance+" ,Avg rating "+getAvgRating()+ "  ,email "+email+"  ,Driving License" + getDrivingLicense() + "  ,National ID" + getNationalId()+")"+"\n";
+        return "Driver( username "+userName+"balance "+balance+" ,Avg rating "+getAvgRating()+
+                " ,email "+email+" ,Driving License" + getDrivingLicense() + " ,National ID" + getNationalId()+")"+"\n";
     }
 
     @Override
@@ -163,18 +182,20 @@ public class Driver extends IUser implements IDriver {
         rides.add(ride);
     }
 
+
     public void startRide(User user){
-        choosenRide.setStart(true);
-        choosenRide.setEnd(false);
+        user.getUserRequest().setStart(true);
+        user.getUserRequest().setEnd(false);
         Event event = new locationEvent(user , this,"Captain arrived to user location");
-        choosenRide.addEvent(event);
+        user.getUserRequest().addEvent(event);
     }
 
     public void endRide(User user){
         Event event = new locationEvent(user ,this ,"Captain arrived to user destination");
-        choosenRide.addEvent(event);
-        choosenRide.setStart(false);
-        choosenRide.setEnd(true);
+        user.getUserRequest().addEvent(event);
+        user.getUserRequest().setStart(false);
+        user.getUserRequest().setEnd(true);
 
     }
 }
+
