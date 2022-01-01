@@ -126,16 +126,17 @@ public class User extends IUser {
     public void calcprice(){
         IOffer offer = new Discount(this.offer);
         if (chosenRide.getDestenation().getAdminDiscount()==true){
-              offer= new TenPresentDiscount(this.offer);
+              offer= new TenPresentDiscount(offer);
         }
         if (birthDate==userRequest.getDate()){
-            offer= new TenPresentDiscount(this.offer);
+            offer= new TenPresentDiscount(offer);
         }
         if (userRequest.getNoOfPass()>=2){
             offer = new FivePresentDiscount(offer);
         }
         if (savedOffers.size()==0){
-            offer= new TenPresentDiscount(this.offer);
+            System.out.println("cccccccc");
+            offer= new TenPresentDiscount(offer);
         }
         if (chosenRide.checkHoliday()==true){
             offer = new FivePresentDiscount(offer);
